@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+// https://medium.com/@kathar.rahul/scss-integration-with-bootstrap-5-in-angular-8e12ddf9b471
+
+// Aqui a ordem dos imports é importante, pois os arquivos scss serão utilizados para sobreescrever os estilos do bootstrap
+
+@import './scss/variable';
+@import './scss/mixins';
+@import './scss/components';
+
+// https://medium.com/@AlexanderObregon/advanced-bootstrap-harnessing-the-power-of-sass-for-customization-c3c455aeebff
+
 @import "bootstrap/scss/bootstrap";
