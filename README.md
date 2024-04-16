@@ -1,5 +1,7 @@
 # Ecopontos
 
+Projeto desenvolvido durante a disciplinas projeto tematico 3 para o Instituto lixo zero. O objeto é proporcionar um ambiente integrado para o controle de ecopontos vinculados ao instituto
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
 ## Development server
