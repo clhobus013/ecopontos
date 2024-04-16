@@ -1,5 +1,15 @@
+@import '../../scss/variable';
+
 .list-items {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+}
+
+.nav-link.active {
+    font-weight: 500;
+}
+
+.vr {
+    color: $primary;
 }
