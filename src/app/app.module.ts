@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { ResiduoComponent } from './residuo/residuo.component';
+import { FiltroComponent } from './filtro/filtro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     HeaderComponent,
-    ResiduoComponent
+    ResiduoComponent,
+    FiltroComponent
   ],
   imports: [
     BrowserModule,
