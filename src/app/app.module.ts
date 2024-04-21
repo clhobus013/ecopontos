@@ -8,18 +8,27 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
 import { ResiduoComponent } from './residuo/residuo.component';
+import { MapaComponent } from './mapa/mapa.component';
+
+// declare global {
+//   interface Window {
+//     initMap: () => void;
+//   }
+// }
+// window.initMap = initMap;
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     HeaderComponent,
-    ResiduoComponent
+    ResiduoComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
