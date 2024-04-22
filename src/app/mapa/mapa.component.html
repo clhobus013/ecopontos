@@ -1,7 +1,18 @@
-<google-map 
-  height="400px"
-  width="750px"
+<google-map
+  height="1088px"
+  width="100%"
+  opacity=".9"
+  [options]="mapOptions"
   [center]="center"
   [zoom]="zoom"
-  (mapClick)="moveMap($event)"
-  (mapMousemove)="move($event)"></google-map>
+  (mapClick)="moveMap($event)">
+
+  <map-marker
+    *ngFor="let marker of markers; let i = index"
+    [position]="marker"
+    [icon]="icons['point' + (i + 1)].icon"
+    (mapClick)="display = marker">
+  </map-marker>
+
+</google-map>
+
