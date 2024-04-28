@@ -1,0 +1,45 @@
+<div [formGroup]="form">
+    <div class="mb-3">
+        <input formControlName="nome" class="form-control" type="text" placeholder="Nome do ecoponto" aria-label="default input example">
+    </div>
+    <div class="mb-3">
+        <input formControlName="cep" class="form-control" type="text" placeholder="Cep" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="estado" class="form-control" type="text" placeholder="Estado" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="cidade" class="form-control" type="text" placeholder="Cidade" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="bairro" class="form-control" type="text" placeholder="Bairro" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="endereco" class="form-control" type="text" placeholder="Endereço" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="numero" class="form-control" type="text" placeholder="Número" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="longitude" class="form-control" type="text" placeholder="Longitude" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="latitude" class="form-control" type="text" placeholder="Latitude" aria-label="default input example">
+    </div>
+
+    <!-- <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="button" class="btn btn-primary btn-lg" (click)="nextStep()">Próximo</button>
+    </div> -->
+
+    <div class="btns">
+        <button routerLink="../empresa">Voltar</button>
+        <button (click)="submit()">Enviar</button>
+      </div>
+</div>

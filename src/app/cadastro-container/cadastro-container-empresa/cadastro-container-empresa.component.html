@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+    <div class="mb-3">
+        <input formControlName="nomeEmpresa" class="form-control" type="text" placeholder="Empresa" aria-label="default input example">
+    </div>
+    <div class="mb-3">
+        <input formControlName="nomeResponsavel" class="form-control" type="text" placeholder="Nome responsável" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="telefone" class="form-control" type="text" placeholder="Whatsapp" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="redeSocial" class="form-control" type="text" placeholder="Redes sociais" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="email" class="form-control" type="email" placeholder="Email" aria-label="default input example">
+    </div>
+
+    <div class="mb-3">
+        <input formControlName="senha" class="form-control" type="password" placeholder="Senha" aria-label="default input example">
+    </div>
+    <!-- <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="button" class="btn btn-primary btn-lg" (click)="nextStep()">Próximo</button>
+    </div> -->
+
+    <button routerLink="../ecoponto">Próximo</button>
+</div>
