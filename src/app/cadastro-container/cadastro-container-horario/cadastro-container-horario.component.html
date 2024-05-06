@@ -1,0 +1,10 @@
+<div [formGroup]="form">
+
+    <div *ngFor="let diaSemana of diasSemana; let i = index">
+        <app-select-horario [index]=i [diaSemana]=diaSemana></app-select-horario>
+    </div>
+    
+    <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="button" class="btn btn-primary btn-lg" (click)="proximo()">Proximo</button>
+    </div>
+</div>

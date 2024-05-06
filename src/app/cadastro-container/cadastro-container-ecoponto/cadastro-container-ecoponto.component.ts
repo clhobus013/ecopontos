@@ -17,6 +17,10 @@ export class CadastroContainerEcopontoComponent implements OnInit {
     this.form = this.formContainer.getEcopontoForm();
   }
 
+  proximo() {
+    this.formContainer.proximoPasso();
+  }
+
   submit() {
     console.log("Enviou formulario")
   }

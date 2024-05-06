@@ -2,44 +2,59 @@
     <div class="mb-3">
         <input formControlName="nome" class="form-control" type="text" placeholder="Nome do ecoponto" aria-label="default input example">
     </div>
-    <div class="mb-3">
-        <input formControlName="cep" class="form-control" type="text" placeholder="Cep" aria-label="default input example">
+
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-12 col-md-6 mb-3 pe-md-1">
+            <input formControlName="cep" class="form-control" type="text" placeholder="Cep" aria-label="default input example">
+        </div>
+    
+        <div class="col-12 col-md-6 mb-3 ps-md-1">
+            <input formControlName="estado" class="form-control" type="text" placeholder="Estado" aria-label="default input example">
+        </div>
+    </div>
+
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-12 col-md-6 mb-3 pe-md-1">
+            <input formControlName="cidade" class="form-control" type="text" placeholder="Cidade" aria-label="default input example">
+        </div>
+    
+        <div class="col-12 col-md-6 mb-3 ps-md-1">
+            <input formControlName="bairro" class="form-control" type="text" placeholder="Bairro" aria-label="default input example">
+        </div>
+    </div>
+
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-8 col-md-9 mb-3 pe-1">
+            <input formControlName="endereco" class="form-control" type="text" placeholder="Endereço" aria-label="default input example">
+        </div>
+    
+        <div class="col-4 col-md-3 mb-3 ps-1">
+            <input formControlName="numero" class="form-control" type="text" placeholder="Número" aria-label="default input example">
+        </div>
+    </div>
+
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-12 col-md-6 mb-3 pe-md-1">
+            <input formControlName="longitude" class="form-control" type="text" placeholder="Longitude" aria-label="default input example">
+        </div>
+    
+        <div class="col-12 col-md-6 mb-3 ps-md-1">
+            <input formControlName="latitude" class="form-control" type="text" placeholder="Latitude" aria-label="default input example">
+        </div>
+    </div>
+
+    <div class="form-check mb-3">
+        <input formControlName="abertoPublico" class="form-check-input" type="checkbox" value="" id="abertoPublico" checked>
+        <label class="form-check-label" for="abertoPublico">
+          Será aberto ao público em geral ?
+        </label>
     </div>
 
     <div class="mb-3">
-        <input formControlName="estado" class="form-control" type="text" placeholder="Estado" aria-label="default input example">
+        <input formControlName="residuos" class="form-control" type="text" placeholder="Residuos - em desenv" aria-label="default input example">
     </div>
 
-    <div class="mb-3">
-        <input formControlName="cidade" class="form-control" type="text" placeholder="Cidade" aria-label="default input example">
+    <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="button" class="btn btn-primary btn-lg" (click)="proximo()">Próximo</button>
     </div>
-
-    <div class="mb-3">
-        <input formControlName="bairro" class="form-control" type="text" placeholder="Bairro" aria-label="default input example">
-    </div>
-
-    <div class="mb-3">
-        <input formControlName="endereco" class="form-control" type="text" placeholder="Endereço" aria-label="default input example">
-    </div>
-
-    <div class="mb-3">
-        <input formControlName="numero" class="form-control" type="text" placeholder="Número" aria-label="default input example">
-    </div>
-
-    <div class="mb-3">
-        <input formControlName="longitude" class="form-control" type="text" placeholder="Longitude" aria-label="default input example">
-    </div>
-
-    <div class="mb-3">
-        <input formControlName="latitude" class="form-control" type="text" placeholder="Latitude" aria-label="default input example">
-    </div>
-
-    <!-- <div class="d-grid gap-2 col-12 mx-auto">
-        <button type="button" class="btn btn-primary btn-lg" (click)="nextStep()">Próximo</button>
-    </div> -->
-
-    <div class="btns">
-        <button routerLink="../empresa">Voltar</button>
-        <button (click)="submit()">Enviar</button>
-      </div>
 </div>

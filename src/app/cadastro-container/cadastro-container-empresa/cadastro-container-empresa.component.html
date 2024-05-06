@@ -1,17 +1,36 @@
 <div [formGroup]="form">
-    <div class="mb-3">
-        <input formControlName="nomeEmpresa" class="form-control" type="text" placeholder="Empresa" aria-label="default input example">
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-12 col-md-6 mb-3 pe-md-1">
+            <input formControlName="nome_fantasia" class="form-control" type="text" placeholder="Nome fantasia" aria-label="default input example">
+        </div>
+    
+        <div class="col-12 col-md-6 mb-3 ps-md-1">
+            <input formControlName="razao_social" class="form-control" type="text" placeholder="Razão Social" aria-label="default input example">
+        </div>
     </div>
-    <div class="mb-3">
-        <input formControlName="nomeResponsavel" class="form-control" type="text" placeholder="Nome responsável" aria-label="default input example">
+    
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-12 col-md-6 mb-3 pe-md-1">
+            <input formControlName="cnpj" class="form-control" type="text" placeholder="Cnpj" aria-label="default input example">
+        </div>
+    
+        <div class="col-12 col-md-6 mb-3 ps-md-1">
+            <input formControlName="ramo_atuacao" class="form-control" type="text" placeholder="Ramo Atuação" aria-label="default input example">
+        </div>
     </div>
 
     <div class="mb-3">
-        <input formControlName="telefone" class="form-control" type="text" placeholder="Whatsapp" aria-label="default input example">
+        <input formControlName="nome_contato_responsavel" class="form-control" type="text" placeholder="Nome responsável" aria-label="default input example">
     </div>
 
-    <div class="mb-3">
-        <input formControlName="redeSocial" class="form-control" type="text" placeholder="Redes sociais" aria-label="default input example">
+    <div class="col-12 d-flex flex-wrap justify-content-between">
+        <div class="col-12 col-md-6 mb-3 pe-md-1">
+            <input formControlName="telefone" class="form-control" type="text" placeholder="Whatsapp" aria-label="default input example">
+        </div>
+    
+        <div class="col-12 col-md-6 mb-3 ps-md-1">
+            <input formControlName="rede_social" class="form-control" type="text" placeholder="Redes sociais" aria-label="default input example">
+        </div>
     </div>
 
     <div class="mb-3">
@@ -21,9 +40,12 @@
     <div class="mb-3">
         <input formControlName="senha" class="form-control" type="password" placeholder="Senha" aria-label="default input example">
     </div>
-    <!-- <div class="d-grid gap-2 col-12 mx-auto">
-        <button type="button" class="btn btn-primary btn-lg" (click)="nextStep()">Próximo</button>
-    </div> -->
 
-    <button routerLink="../ecoponto">Próximo</button>
+    <div class="mb-3">
+        <textarea formControlName="descricao_outros_projetos" class="form-control" class="form-control" placeholder="Sua empresa já tem alguma iniciativa ambiental relacionada à resíduos ? Nos conte sobre ela!" id="participacaoOutrosProjetos"></textarea>
+    </div>
+    
+    <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="button" class="btn btn-primary btn-lg" (click)="salvar()">Salvar</button>
+    </div>
 </div>

@@ -26,6 +26,13 @@ export const routes: Routes = [
             (module) => module.CadastroContainerEcopontoModule
           ),
       },
+      {
+        path: 'horario',
+        loadChildren: () =>
+          import('./cadastro-container-horario/cadastro-container-horario.module').then(
+            (module) => module.CadastroContainerHorarioModule
+          ),
+      },
     ],
   },
 ];

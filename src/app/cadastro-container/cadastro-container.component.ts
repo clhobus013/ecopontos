@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpresaService } from '../services/empresa.service';
-import { Empresa } from '../models/empresa';
+import { Router } from '@angular/router';
+import { DiasFuncionamento } from '../models/diasFuncionamento';
+
+export interface Indicador {
+  id: number;
+  label: string;
+  route: string;
+}
 
 @Component({
   selector: 'app-cadastro-container',
@@ -11,29 +18,71 @@ import { Empresa } from '../models/empresa';
 export class CadastroContainerComponent implements OnInit {
 
   form!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private empresaService: EmpresaService) {}
+
+  diasFuncionamento: DiasFuncionamento[] = [
+    DiasFuncionamento.segunda,
+    DiasFuncionamento.terca,
+    DiasFuncionamento.quarta,
+    DiasFuncionamento.quinta,
+    DiasFuncionamento.sexta,
+    DiasFuncionamento.sabado,
+    DiasFuncionamento.domingo,
+  ]
+
+  passo = 0;
+  indicadores: Indicador[] = [
+    { id: 0, label: 'Empresa', route: '/cadastro/empresa' },
+    { id: 1, label: 'Ecoponto', route: '/cadastro/ecoponto' },
+    { id: 2, label: 'Horário de funcionamento', route: '/cadastro/horario' },
+  ];
+
+  constructor(private formBuilder: FormBuilder, private empresaService: EmpresaService, private router: Router) {}
+
+  // Ver rotas:
+  // https://balta.io/blog/angular-rotas-guardas-navegacao
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       empresa: this.formBuilder.group({
-        nomeEmpresa: [null, [Validators.required]],
-        nomeResponsavel: [null, [Validators.required]],
+        nome_fantasia: [null, [Validators.required]],
+        razao_social: [null, [Validators.required]],
+        cnpj: [null, [Validators.required]],
+        ramo_atuacao: [null, [Validators.required]],
+        nome_contato_responsavel: [null, [Validators.required]],
         telefone: [null, [Validators.required]],
-        redeSocial: [null, [Validators.required]],
+        rede_social: [null, [Validators.required]],
         email: [null, [Validators.required, Validators.email]],
         senha: [null, [Validators.required]],
+        descricao_outros_projetos: [null],
       }),
       ecoponto: this.formBuilder.group({
-        nome: '',
-        cep: '',
-        estado: '',
-        cidade: '',
-        bairro: '',
-        endereco: '',
-        numero: '',
-        latitude: '',
-        longitude: '',
-        abertoPublico: '',
+        nome: [null, [Validators.required]],
+        cep: [null, [Validators.required]],
+        estado: [null, [Validators.required]],
+        cidade: [null, [Validators.required]],
+        bairro: [null, [Validators.required]],
+        endereco: [null, [Validators.required]],
+        numero: [null, [Validators.required]],
+        latitude: [null, [Validators.required]],
+        longitude: [null, [Validators.required]],
+        abertoPublico: [null, [Validators.required]],
+        residuos: [null, [Validators.required]],
+      }),
+      // horario: this.formBuilder.group({
+        // }),
+      horario: this.formBuilder.group({
+        horarios: this.formBuilder.array(
+          this.diasFuncionamento.map(() => {
+            return this.formBuilder.group({
+              dia: [null, [Validators.required]],
+              inicio: [null, [Validators.required]],
+              fim: [null, [Validators.required]],
+            })
+          })
+        )
+      }),
+      residuo: this.formBuilder.group({
+        id: [null, [Validators.required]],
       }),
     });
   }
@@ -46,19 +95,24 @@ export class CadastroContainerComponent implements OnInit {
     return this.form.get('ecoponto') as FormGroup;
   }
 
+  getHorarioForm(): FormGroup {
+    return this.form.get('horario') as FormGroup;
+  }
 
-  passo = 0;
-  indicadores = [
-    { id: 0, label: 'Empresa' },
-    { id: 1, label: 'Ecoponto' },
-    { id: 2, label: 'Horário de funcionamento' },
-    { id: 3, label: 'Resíduo' },
-  ];
+  public irPara(index: number) {
+    this.passo = index;
+    this.router.navigate([this.indicadores[index].route]);
+  }
 
-  proximoPasso() {
-    console.log("Proximo passo");
-    if (this.passo < 3) {
+  public proximoPasso() {
+    if (this.passo < 2) {
       this.passo++;
+
+      if(this.passo != this.indicadores.length) {
+        this.router.navigate([this.indicadores[this.passo].route]);
+      } else {
+        // Direciona para tela de sucesso
+      }
     }
   }
 
@@ -71,20 +125,6 @@ export class CadastroContainerComponent implements OnInit {
   //Teste api
   public getEcoponto() {
     this.empresaService.getEmpresa()
-      .subscribe(
-        (data: any) => {
-          console.log(data);
-        },
-        (error: any) => {
-          console.log(error);
-        }
-      );
-  }
-
-  // Teste api
-  public cadastraEmpresa() {
-    let empresa = new Empresa("teste", "razao", "05112929022", "mome_resp", "ramo", "tele", "email", "rede", false, "desc", [], []);
-    this.empresaService.postEmpresa(empresa)
       .subscribe(
         (data: any) => {
           console.log(data);
