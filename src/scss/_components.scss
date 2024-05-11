@@ -5,9 +5,10 @@
     border: #B0ADA9 solid 1px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
     padding: 20px;
-    height: 100%;
+    // height: 100%;
     // padding: 3% 7% 3% 7%;
     max-width: 700px;
+    background-color: #ffffff;
 }
 
 .step-indicators {
@@ -32,4 +33,15 @@
     background-color: $primary;
     color: white;
     border-color: $primary;
+}
+
+.map {
+    position: relative;
+    height: 100%;
+}
+
+.filtro-card {
+    position: absolute;
+    top: 10%;
+    left: 10%;
 }

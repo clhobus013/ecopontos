@@ -1,17 +1,21 @@
-<google-map
-  height="1088px"
-  width="100%"
-  opacity=".9"
-  [options]="mapOptions"
-  [center]="center"
-  [zoom]="zoom"
-  (mapClick)="moveMap($event)">
+<div class="map">
+  <google-map
+    height="100%"
+    width="100%"
+    opacity=".9"
+    [options]="mapOptions"
+    [center]="center"
+    [zoom]="zoom"
+    (mapClick)="moveMap($event)">
+  
+    <map-marker
+      *ngFor="let marker of markers; let i = index"
+      [position]="marker"
+      [icon]="icons['point' + (i + 1)].icon"
+      (mapClick)="display = marker">
+    </map-marker>
+  
+  </google-map>
+  <app-filtro></app-filtro>
+</div>
 
-  <map-marker
-    *ngFor="let marker of markers; let i = index"
-    [position]="marker"
-    [icon]="icons['point' + (i + 1)].icon"
-    (mapClick)="display = marker">
-  </map-marker>
-
-</google-map>
