@@ -13,6 +13,7 @@ import { Ecoponto } from 'src/app/models/ecoponto';
 export class CadastroContainerEcopontoComponent implements OnInit {
 
   form!: FormGroup;
+  formLocalizacao!: FormGroup;
   ecopontoId: string|null = null;
   empresaId: string|null = null;
 
@@ -20,6 +21,7 @@ export class CadastroContainerEcopontoComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formContainer.getEcopontoForm();
+    this.formLocalizacao = this.formContainer.getLocalizacaoForm();
 
     this.ecopontoId = localStorage.getItem('ecopontoId');
     this.empresaId = localStorage.getItem('empresaId');
@@ -43,18 +45,22 @@ export class CadastroContainerEcopontoComponent implements OnInit {
         (data: any) => {
           console.log(data);
 
+          this.formLocalizacao.setValue({
+            cep: data.values.localizacao[0].cep,
+            estado: data.values.localizacao[0].estado,
+            cidade: data.values.localizacao[0].cidade,
+            bairro: data.values.localizacao[0].bairro,
+            rua: data.values.localizacao[0].rua,
+            numero: data.values.localizacao[0].numero,
+            latitude: data.values.localizacao[0].latitude,
+            longitude: data.values.localizacao[0].longitude,
+          }),
+
           this.form.setValue({
-            id: data.value.id,
-            nome: data.value.nome,
-            cep: data.value.cep,
-            estado: data.value.estado,
-            cidade: data.value.cidade,
-            bairro: data.value.bairro,
-            rua: data.value.rua,
-            numero: data.value.numero,
-            latitude: data.value.latitude,
-            longitude: data.value.longitude,
-            abertoPublico: data.value.aberto_publico,
+            id: data.values.id,
+            nome: data.values.nome,
+            localizacao: this.formLocalizacao.value,
+            abertoPublico: data.values.aberto_publico,
             residuos: null,
           })
 

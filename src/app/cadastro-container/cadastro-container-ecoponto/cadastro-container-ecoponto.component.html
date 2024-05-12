@@ -7,77 +7,93 @@
             [ngClass]="formContainer.displayFieldCss('ecoponto.nome')">Por favor, informe o nome do ecoponto</div>
     </div>
 
-    <div class="col-12 d-flex flex-wrap justify-content-between">
-        <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="cep" class="form-control"
-                [ngClass]="!formContainer.isFieldValid('ecoponto.cep') ? 'is-invalid' : ''" type="text"
-                placeholder="Cep" aria-label="default input example">
-            <div *ngIf="!formContainer.isFieldValid('ecoponto.cep')"
-                [ngClass]="formContainer.displayFieldCss('ecoponto.cep')">Por favor, informe o cep</div>
+    <div [formGroup]="formLocalizacao" class="needs-validation" novalidate>
+
+        <div class="col-12 d-flex flex-wrap justify-content-between">
+            <div class="col-12 col-md-6 mb-3 pe-md-1">
+                <input formControlName="cep" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.cep') ? 'is-invalid' : ''" type="text"
+                    placeholder="Cep" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.cep')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cep')">Por favor, informe o cep</div>
+            </div>
+
+            <div class="col-12 col-md-6 mb-3 ps-md-1">
+                <input formControlName="estado" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.estado') ? 'is-invalid' : ''"
+                    type="text" placeholder="Estado" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.estado')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.estado')">Por favor, informe o estado
+                </div>
+            </div>
         </div>
 
-        <div class="col-12 col-md-6 mb-3 ps-md-1">
-            <input formControlName="estado" class="form-control" 
-            [ngClass]="!formContainer.isFieldValid('ecoponto.estado') ? 'is-invalid' : ''" type="text" placeholder="Estado"
-                aria-label="default input example">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.estado')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.estado')">Por favor, informe o estado</div>
-        </div>
-    </div>
+        <div class="col-12 d-flex flex-wrap justify-content-between">
+            <div class="col-12 col-md-6 mb-3 pe-md-1">
+                <input formControlName="cidade" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.cidade') ? 'is-invalid' : ''"
+                    type="text" placeholder="Cidade" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.cidade')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cidade')">Por favor, informe a cidade
+                </div>
+            </div>
 
-    <div class="col-12 d-flex flex-wrap justify-content-between">
-        <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="cidade" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.cidade') ? 'is-invalid' : ''" type="text" placeholder="Cidade"
-                aria-label="default input example">
-            <div *ngIf="!formContainer.isFieldValid('ecoponto.cidade')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.cidade')">Por favor, informe a cidade</div>
-        </div>
-
-        <div class="col-12 col-md-6 mb-3 ps-md-1">
-            <input formControlName="bairro" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.bairro') ? 'is-invalid' : ''" type="text" placeholder="Bairro"
-                aria-label="default input example">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.bairro')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.bairro')">Por favor, informe o bairro</div>
-        </div>
-    </div>
-
-    <div class="col-12 d-flex flex-wrap justify-content-between">
-        <div class="col-8 col-md-9 mb-3 pe-1">
-            <input formControlName="rua" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.rua') ? 'is-invalid' : ''" type="text" placeholder="Endereço"
-                aria-label="default input example">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.rua')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.rua')">Por favor, informe o endereço</div>
+            <div class="col-12 col-md-6 mb-3 ps-md-1">
+                <input formControlName="bairro" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.bairro') ? 'is-invalid' : ''"
+                    type="text" placeholder="Bairro" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.bairro')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.bairro')">Por favor, informe o bairro
+                </div>
+            </div>
         </div>
 
-        <div class="col-4 col-md-3 mb-3 ps-1">
-            <input formControlName="numero" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.numero') ? 'is-invalid' : ''" type="text" placeholder="Número"
-                aria-label="default input example">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.numero')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.numero')">Por favor, informe o número</div>
+        <div class="col-12 d-flex flex-wrap justify-content-between">
+            <div class="col-8 col-md-9 mb-3 pe-1">
+                <input formControlName="rua" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.rua') ? 'is-invalid' : ''" type="text"
+                    placeholder="Endereço" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.rua')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.rua')">Por favor, informe o endereço
+                </div>
+            </div>
+
+            <div class="col-4 col-md-3 mb-3 ps-1">
+                <input formControlName="numero" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.numero') ? 'is-invalid' : ''"
+                    type="text" placeholder="Número" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.numero')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.numero')">Por favor, informe o número
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="col-12 d-flex flex-wrap justify-content-between">
-        <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="longitude" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.longitude') ? 'is-invalid' : ''" type="text" placeholder="Longitude"
-                aria-label="default input example">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.longitude')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.longitude')">Por favor, informe a longitude</div>
+        <div class="col-12 d-flex flex-wrap justify-content-between">
+            <div class="col-12 col-md-6 mb-3 pe-md-1">
+                <input formControlName="longitude" class="form-control"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.longitude') ? 'is-invalid' : ''"
+                    type="text" placeholder="Longitude" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.longitude')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.longitude')">Por favor, informe a
+                    longitude</div>
 
-        </div>
+            </div>
 
-        <div class="col-12 col-md-6 mb-3 ps-md-1">
-            <input formControlName="latitude" class="form-control" type="text" [ngClass]="!formContainer.isFieldValid('ecoponto.latitude') ? 'is-invalid' : ''" placeholder="Latitude"
-                aria-label="default input example">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.latitude')"
-            [ngClass]="formContainer.displayFieldCss('ecoponto.latitude')">Por favor, informe a latitude</div>
+            <div class="col-12 col-md-6 mb-3 ps-md-1">
+                <input formControlName="latitude" class="form-control" type="text"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.latitude') ? 'is-invalid' : ''"
+                    placeholder="Latitude" aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.latitude')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.latitude')">Por favor, informe a
+                    latitude</div>
+            </div>
         </div>
     </div>
 
     <div class="form-check mb-3">
-        <input formControlName="aberto_publico" class="form-check-input" type="checkbox" value="" id="aberto_publico"
+        <input formControlName="abertoPublico" class="form-check-input" type="checkbox" value="" id="abertoPublico"
             checked>
-        <label class="form-check-label" for="aberto_publico">
+        <label class="form-check-label" for="abertoPublico">
             Será aberto ao público em geral ?
         </label>
     </div>

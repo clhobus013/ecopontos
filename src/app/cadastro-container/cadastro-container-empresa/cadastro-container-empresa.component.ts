@@ -15,7 +15,7 @@ export class CadastroContainerEmpresaComponent implements OnInit {
   form!: FormGroup;
   empresaId: string|null = null;
 
-  constructor(private formContainer: CadastroContainerComponent, private empresaService: EmpresaService, private toastr: ToastrService) {}
+  constructor(public formContainer: CadastroContainerComponent, private empresaService: EmpresaService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.form = this.formContainer.getEmpresaForm();

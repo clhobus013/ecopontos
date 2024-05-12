@@ -36,18 +36,22 @@ export class CadastroContainerComponent implements OnInit {
     { id: 2, label: 'Horário de funcionamento', route: '/cadastro/horario' },
   ];
 
+  sub = this.router.events.subscribe(
+    event =>  {
+    // Pega passo atual baseado na url
+      this.passo = this.indicadores.map((indicador)=> indicador.route).indexOf(this.router.url);
+    }
+  );
+
   enviado = false;
 
   constructor(private formBuilder: FormBuilder, private empresaService: EmpresaService, private router: Router) {}
-
-  // Ver rotas:
-  // https://balta.io/blog/angular-rotas-guardas-navegacao
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
   ngOnInit() {
-
-    // Pega passo atual baseado na url
-    this.passo = this.indicadores.map((indicador)=> indicador.route).indexOf(this.router.url);
-
     this.form = this.formBuilder.group({
       empresa: this.formBuilder.group({
         id: [{value: null, disabled:true}],
@@ -65,15 +69,17 @@ export class CadastroContainerComponent implements OnInit {
       ecoponto: this.formBuilder.group({
         id: [{value: null, disabled:true}],
         nome: [null, [Validators.required]],
-        cep: [null, [Validators.required]],
-        estado: ['RS', [Validators.required]],
-        cidade: ['Caxias do sul', [Validators.required]],
-        bairro: [null, [Validators.required]],
-        rua: [null, [Validators.required]],
-        numero: [null, [Validators.required]],
-        latitude: [null, [Validators.required]],
-        longitude: [null, [Validators.required]],
-        aberto_publico: [null, [Validators.required]],
+        localizacao: this.formBuilder.group({
+          cep: [null, [Validators.required]],
+          estado: ['RS', [Validators.required]],
+          cidade: ['Caxias do sul', [Validators.required]],
+          bairro: [null, [Validators.required]],
+          rua: [null, [Validators.required]],
+          numero: [null, [Validators.required]],
+          latitude: [null, [Validators.required]],
+          longitude: [null, [Validators.required]],
+        }),
+        abertoPublico: [null, [Validators.required]],
         residuos: [null],
         // residuos: [null, [Validators.required]],
       }),
@@ -104,13 +110,16 @@ export class CadastroContainerComponent implements OnInit {
     return this.form.get('ecoponto') as FormGroup;
   }
 
+  getLocalizacaoForm(): FormGroup {
+    return this.getEcopontoForm().get('localizacao') as FormGroup;
+  }
+
   getHorarioForm(): FormGroup {
     return this.form.get('horario') as FormGroup;
   }
 
   public irPara(index: number) {
     this.enviado = false;
-    this.passo = index;
     this.router.navigate([this.indicadores[index].route]);
   }
 

@@ -1,7 +1,9 @@
 <div [formGroup]="form">
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="nomeFantasia" class="form-control" type="text" placeholder="Nome fantasia" aria-label="default input example">
+            <input formControlName="nomeFantasia" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.nomeFantasia') ? 'is-invalid' : ''" type="text" placeholder="Nome fantasia" aria-label="default input example">
+            <div *ngIf="!formContainer.isFieldValid('empresa.nomeFantasia')"
+            [ngClass]="formContainer.displayFieldCss('empresa.nomeFantasia')">Por favor, informe o nome da empresa</div>
         </div>
     
         <div class="col-12 col-md-6 mb-3 ps-md-1">
@@ -11,7 +13,9 @@
     
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="cnpj" class="form-control" type="text" placeholder="Cnpj" aria-label="default input example">
+            <input formControlName="cnpj" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.cnpj') ? 'is-invalid' : ''" type="text" placeholder="Cnpj" aria-label="default input example">
+            <div *ngIf="!formContainer.isFieldValid('empresa.cnpj')"
+            [ngClass]="formContainer.displayFieldCss('empresa.cnpj')">Por favor, informe o cnpj da empresa</div>
         </div>
     
         <div class="col-12 col-md-6 mb-3 ps-md-1">
@@ -20,12 +24,16 @@
     </div>
 
     <div class="mb-3">
-        <input formControlName="nomeContatoResponsavel" class="form-control" type="text" placeholder="Nome responsável" aria-label="default input example">
+        <input formControlName="nomeContatoResponsavel" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.nomeContatoResponsavel') ? 'is-invalid' : ''" type="text" type="text" placeholder="Nome responsável" aria-label="default input example">
+        <div *ngIf="!formContainer.isFieldValid('empresa.nomeContatoResponsavel')"
+            [ngClass]="formContainer.displayFieldCss('empresa.nomeContatoResponsavel')">Por favor, informe o nome de um responsável pela empresa</div>
     </div>
 
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="telefone" class="form-control" type="text" placeholder="Whatsapp" aria-label="default input example">
+            <input formControlName="telefone" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.telefone') ? 'is-invalid' : ''" type="text" placeholder="Telefone" aria-label="default input example">
+            <div *ngIf="!formContainer.isFieldValid('empresa.telefone')"
+            [ngClass]="formContainer.displayFieldCss('empresa.telefone')">Por favor, informe um telefone para contato</div>
         </div>
     
         <div class="col-12 col-md-6 mb-3 ps-md-1">
@@ -34,11 +42,15 @@
     </div>
 
     <div class="mb-3">
-        <input formControlName="email" class="form-control" type="email" placeholder="Email" aria-label="default input example">
+        <input formControlName="email" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.email') ? 'is-invalid' : ''" type="email" placeholder="Email" aria-label="default input example">
+        <div *ngIf="!formContainer.isFieldValid('empresa.email')"
+            [ngClass]="formContainer.displayFieldCss('empresa.email')">Por favor, informe um email para contato</div>
     </div>
 
     <div class="mb-3">
-        <input formControlName="senha" class="form-control" type="password" placeholder="Senha" aria-label="default input example">
+        <input formControlName="senha" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.senha') ? 'is-invalid' : ''" type="password" placeholder="Senha" aria-label="default input example">
+        <div *ngIf="!formContainer.isFieldValid('empresa.senha')"
+            [ngClass]="formContainer.displayFieldCss('empresa.senha')">Por favor, informe uma senha para acesso</div>
     </div>
 
     <div class="mb-3">

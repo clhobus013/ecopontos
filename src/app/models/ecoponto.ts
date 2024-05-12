@@ -26,7 +26,7 @@ export class Ecoponto {
             ativo: this.ativo,
             aberto_publico: this.abertoPublico,
             empresa_id: this.empresa?.id,
-            localizacao: this.localizacao
+            localizacao: [this.localizacao]
         };
     }
 }
