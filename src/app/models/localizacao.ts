@@ -8,5 +8,5 @@ export interface Localizacao {
     complemento: string,
     latitude: string,
     longitude: string,
-    url_localizacao: string,
+    // url_localizacao: string,
 }

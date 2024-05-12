@@ -1,16 +1,34 @@
+import { DiasFuncionamento } from "./diasFuncionamento";
+import { Empresa } from "./empresa";
 import { Localizacao } from "./localizacao";
 import { Residuo } from "./residuo";
 
-export interface Ecoponto {
-    situacao: string,
-    nome: string,
-    ativo: boolean,
-    aberto_publico: boolean,
-    data_inicio: string,
-    data_final: string,
-    dia_funcionamento: string,
-    residuos: Residuo[],
-    localizacao: Localizacao,
-    participacao_outros_projetos: boolean,
-    descricao_outros_projetos: string,
+export class Ecoponto {
+    id: number = 0;
+    nome: string = "";
+    abertoPublico: boolean = true;
+    situacao: string = "";
+    dataInicio: string = "";
+    dataFinal: string = "";
+    ativo: boolean = true;
+    empresa: Empresa|undefined;
+    diasFuncionamento: DiasFuncionamento[] = [];
+    residuos: Residuo[] = [];
+    localizacao: Localizacao|undefined;
+
+    constructor(init?: Partial<Ecoponto>) {
+        Object.assign(this, init);
+    }
+
+    getEcopontoFormatadoApi() {
+        return {
+            nome: this.nome,
+            ativo: this.ativo,
+            aberto_publico: this.abertoPublico,
+            data_inicio: this.dataInicio,
+            data_final: this.dataFinal,
+            empresa_id: this.empresa?.id,
+            localizacao: this.localizacao
+        };
+    }
 }

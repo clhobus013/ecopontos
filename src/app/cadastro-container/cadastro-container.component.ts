@@ -44,29 +44,32 @@ export class CadastroContainerComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       empresa: this.formBuilder.group({
-        nome_fantasia: [null, [Validators.required]],
-        razao_social: [null, [Validators.required]],
+        id: [{value: null, disabled:true}],
+        nomeFantasia: [null, [Validators.required]],
+        razaoSocial: [null, [Validators.required]],
         cnpj: [null, [Validators.required]],
-        ramo_atuacao: [null, [Validators.required]],
-        nome_contato_responsavel: [null, [Validators.required]],
+        ramoAtuacao: [null, [Validators.required]],
+        nomeContatoResponsavel: [null, [Validators.required]],
         telefone: [null, [Validators.required]],
-        rede_social: [null, [Validators.required]],
+        redeSocial: [null, [Validators.required]],
         email: [null, [Validators.required, Validators.email]],
         senha: [null, [Validators.required]],
-        descricao_outros_projetos: [null],
+        descricaoOutrosProjetos: [null],
       }),
       ecoponto: this.formBuilder.group({
+        id: [{value: null, disabled:true}],
         nome: [null, [Validators.required]],
         cep: [null, [Validators.required]],
         estado: [null, [Validators.required]],
         cidade: [null, [Validators.required]],
         bairro: [null, [Validators.required]],
-        endereco: [null, [Validators.required]],
+        rua: [null, [Validators.required]],
         numero: [null, [Validators.required]],
         latitude: [null, [Validators.required]],
         longitude: [null, [Validators.required]],
-        abertoPublico: [null, [Validators.required]],
-        residuos: [null, [Validators.required]],
+        aberto_publico: [null, [Validators.required]],
+        residuos: [null],
+        // residuos: [null, [Validators.required]],
       }),
       // horario: this.formBuilder.group({
         // }),
@@ -120,19 +123,6 @@ export class CadastroContainerComponent implements OnInit {
     if (this.passo > 0) {
       this.passo--;
     }
-  }
-
-  //Teste api
-  public getEcoponto() {
-    this.empresaService.getEmpresa()
-      .subscribe(
-        (data: any) => {
-          console.log(data);
-        },
-        (error: any) => {
-          console.log(error);
-        }
-      );
   }
 
 }

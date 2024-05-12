@@ -23,12 +23,24 @@ export class EmpresaService {
 
   constructor(private http: HttpClient) { }
 
-  getEmpresa(): any {
-    return this.http.get<Empresa>(this._url + "/ecoponto", this.requestOptions);
+  getEmpresas(): any {
+    return this.http.get<Empresa>(this._url + "/empresa", this.requestOptions);
+  }
+
+  getEmpresaPorId(id: number): any {
+    console.log("Empresa id ", id);
+    return this.http.get<Empresa>(this._url + "/empresa/" + id, this.requestOptions);
   }
 
   postEmpresa(empresa: Empresa): any {
-    return this.http.post<ErroDefault>(this._url + "/empresa", empresa);
+    const empresaFormatada = empresa.getEmpresaFormatadaApi()
+    return this.http.post<ErroDefault>(this._url + "/empresa", empresaFormatada);
+  }
+
+  putEmpresa(empresa: Empresa): any {
+    const empresaFormatada = empresa.getEmpresaFormatadaApi();
+    console.log("Put empresa", empresa, empresaFormatada);
+    return this.http.put<ErroDefault>(this._url + "/empresa/" + empresa.id, empresaFormatada);
   }
 
 }
