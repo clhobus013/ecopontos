@@ -25,8 +25,6 @@ export class Ecoponto {
             nome: this.nome,
             ativo: this.ativo,
             aberto_publico: this.abertoPublico,
-            data_inicio: this.dataInicio,
-            data_final: this.dataFinal,
             empresa_id: this.empresa?.id,
             localizacao: this.localizacao
         };

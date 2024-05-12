@@ -1,60 +1,93 @@
-<div [formGroup]="form">
+<div [formGroup]="form" class="needs-validation" novalidate>
     <div class="mb-3">
-        <input formControlName="nome" class="form-control" type="text" placeholder="Nome do ecoponto" aria-label="default input example">
+        <input formControlName="nome" class="form-control"
+            [ngClass]="!formContainer.isFieldValid('ecoponto.nome') ? 'is-invalid' : ''" type="text"
+            placeholder="Nome do ecoponto" aria-label="default input example">
+        <div *ngIf="!formContainer.isFieldValid('ecoponto.nome')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.nome')">Por favor, informe o nome do ecoponto</div>
     </div>
 
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="cep" class="form-control" type="text" placeholder="Cep" aria-label="default input example">
+            <input formControlName="cep" class="form-control"
+                [ngClass]="!formContainer.isFieldValid('ecoponto.cep') ? 'is-invalid' : ''" type="text"
+                placeholder="Cep" aria-label="default input example">
+            <div *ngIf="!formContainer.isFieldValid('ecoponto.cep')"
+                [ngClass]="formContainer.displayFieldCss('ecoponto.cep')">Por favor, informe o cep</div>
         </div>
-    
+
         <div class="col-12 col-md-6 mb-3 ps-md-1">
-            <input formControlName="estado" class="form-control" type="text" placeholder="Estado" aria-label="default input example">
+            <input formControlName="estado" class="form-control" 
+            [ngClass]="!formContainer.isFieldValid('ecoponto.estado') ? 'is-invalid' : ''" type="text" placeholder="Estado"
+                aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.estado')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.estado')">Por favor, informe o estado</div>
         </div>
     </div>
 
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="cidade" class="form-control" type="text" placeholder="Cidade" aria-label="default input example">
+            <input formControlName="cidade" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.cidade') ? 'is-invalid' : ''" type="text" placeholder="Cidade"
+                aria-label="default input example">
+            <div *ngIf="!formContainer.isFieldValid('ecoponto.cidade')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.cidade')">Por favor, informe a cidade</div>
         </div>
-    
+
         <div class="col-12 col-md-6 mb-3 ps-md-1">
-            <input formControlName="bairro" class="form-control" type="text" placeholder="Bairro" aria-label="default input example">
+            <input formControlName="bairro" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.bairro') ? 'is-invalid' : ''" type="text" placeholder="Bairro"
+                aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.bairro')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.bairro')">Por favor, informe o bairro</div>
         </div>
     </div>
 
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-8 col-md-9 mb-3 pe-1">
-            <input formControlName="rua" class="form-control" type="text" placeholder="Endereço" aria-label="default input example">
+            <input formControlName="rua" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.rua') ? 'is-invalid' : ''" type="text" placeholder="Endereço"
+                aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.rua')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.rua')">Por favor, informe o endereço</div>
         </div>
-    
+
         <div class="col-4 col-md-3 mb-3 ps-1">
-            <input formControlName="numero" class="form-control" type="text" placeholder="Número" aria-label="default input example">
+            <input formControlName="numero" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.numero') ? 'is-invalid' : ''" type="text" placeholder="Número"
+                aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.numero')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.numero')">Por favor, informe o número</div>
         </div>
     </div>
 
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="longitude" class="form-control" type="text" placeholder="Longitude" aria-label="default input example">
+            <input formControlName="longitude" class="form-control" [ngClass]="!formContainer.isFieldValid('ecoponto.longitude') ? 'is-invalid' : ''" type="text" placeholder="Longitude"
+                aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.longitude')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.longitude')">Por favor, informe a longitude</div>
+
         </div>
-    
+
         <div class="col-12 col-md-6 mb-3 ps-md-1">
-            <input formControlName="latitude" class="form-control" type="text" placeholder="Latitude" aria-label="default input example">
+            <input formControlName="latitude" class="form-control" type="text" [ngClass]="!formContainer.isFieldValid('ecoponto.latitude') ? 'is-invalid' : ''" placeholder="Latitude"
+                aria-label="default input example">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.latitude')"
+            [ngClass]="formContainer.displayFieldCss('ecoponto.latitude')">Por favor, informe a latitude</div>
         </div>
     </div>
 
     <div class="form-check mb-3">
-        <input formControlName="aberto_publico" class="form-check-input" type="checkbox" value="" id="aberto_publico" checked>
+        <input formControlName="aberto_publico" class="form-check-input" type="checkbox" value="" id="aberto_publico"
+            checked>
         <label class="form-check-label" for="aberto_publico">
-          Será aberto ao público em geral ?
+            Será aberto ao público em geral ?
         </label>
     </div>
 
     <div class="mb-3">
-        <input formControlName="residuos" class="form-control" type="text" placeholder="Residuos - em desenv" aria-label="default input example">
+        <input formControlName="residuos" class="form-control" type="text" placeholder="Residuos - em desenv"
+            aria-label="default input example">
     </div>
 
     <div class="d-grid gap-2 col-12 mx-auto">
-        <button type="button" class="btn btn-primary btn-lg" (click)="salvar()">Próximo</button>
+        <button type="button" class="btn btn-primary fw-bold display-1 btn-lg" (click)="salvar()">Próximo</button>
     </div>
 </div>

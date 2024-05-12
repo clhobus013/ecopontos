@@ -36,12 +36,18 @@ export class CadastroContainerComponent implements OnInit {
     { id: 2, label: 'Horário de funcionamento', route: '/cadastro/horario' },
   ];
 
+  enviado = false;
+
   constructor(private formBuilder: FormBuilder, private empresaService: EmpresaService, private router: Router) {}
 
   // Ver rotas:
   // https://balta.io/blog/angular-rotas-guardas-navegacao
 
   ngOnInit() {
+
+    // Pega passo atual baseado na url
+    this.passo = this.indicadores.map((indicador)=> indicador.route).indexOf(this.router.url);
+
     this.form = this.formBuilder.group({
       empresa: this.formBuilder.group({
         id: [{value: null, disabled:true}],
@@ -60,8 +66,8 @@ export class CadastroContainerComponent implements OnInit {
         id: [{value: null, disabled:true}],
         nome: [null, [Validators.required]],
         cep: [null, [Validators.required]],
-        estado: [null, [Validators.required]],
-        cidade: [null, [Validators.required]],
+        estado: ['RS', [Validators.required]],
+        cidade: ['Caxias do sul', [Validators.required]],
         bairro: [null, [Validators.required]],
         rua: [null, [Validators.required]],
         numero: [null, [Validators.required]],
@@ -103,11 +109,15 @@ export class CadastroContainerComponent implements OnInit {
   }
 
   public irPara(index: number) {
+    this.enviado = false;
     this.passo = index;
     this.router.navigate([this.indicadores[index].route]);
   }
 
   public proximoPasso() {
+
+    this.enviado = false;
+
     if (this.passo < 2) {
       this.passo++;
 
@@ -120,9 +130,29 @@ export class CadastroContainerComponent implements OnInit {
   }
 
   passoAnterior() {
+
+    this.enviado = false;
+
     if (this.passo > 0) {
       this.passo--;
     }
+  }
+
+  isFieldValid(field: string) {
+    if (this.form.get(field)?.touched || this.enviado) {
+      if (!this.form.get(field)?.valid) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+  
+  displayFieldCss(field: string) {
+    return {
+      'invalid-feedback': !this.isFieldValid(field),
+      'valid-feedback': this.isFieldValid(field)
+    };
   }
 
 }

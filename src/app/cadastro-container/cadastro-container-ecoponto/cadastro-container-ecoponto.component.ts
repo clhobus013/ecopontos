@@ -16,7 +16,7 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   ecopontoId: string|null = null;
   empresaId: string|null = null;
 
-  constructor(private formContainer: CadastroContainerComponent, private ecopontoService: EcopontoService, private toastr: ToastrService) {}
+  constructor(public formContainer: CadastroContainerComponent, private ecopontoService: EcopontoService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.form = this.formContainer.getEcopontoForm();
@@ -115,6 +115,8 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   }
 
   public salvar(){
+
+    this.formContainer.enviado = true;
 
     if (!this.form.valid) {
       console.log("Tentou enviar formulario: ", this.form);

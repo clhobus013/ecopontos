@@ -110,6 +110,8 @@ export class CadastroContainerEmpresaComponent implements OnInit {
 
   public salvar(){
 
+    this.formContainer.enviado = true;
+
     console.log("Clicou em salvar empresa!!");
 
     if (!this.form.valid) {
