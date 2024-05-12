@@ -3,7 +3,12 @@
 $primary: #177292;
 $secondary: white;
 
-$font-weight-bold: 600; 
+$font-family-sans-serif: "Barlow";
+$font-family-serif:      $font-family-sans-serif;
+$font-family-monospace:  $font-family-sans-serif;
+$font-family-base:       $font-family-sans-serif;
+
+$font-weight-bold: 700; 
 
 //INPUT
 $input-border-color: $primary;
