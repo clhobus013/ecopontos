@@ -1,10 +1,13 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
+import { MapaComponent } from './mapa/mapa.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'inicio', pathMatch: 'full'}, //rota padrao
-  // {path: 'inicio', component: Component} ,
-  { path: 'cadastro', loadChildren: () => import('./cadastro-container/cadastro-container.module').then(m => m.CadastroContainerModule) },
+  { path: '', component: MapaComponent, pathMatch: 'full'}, //rota padrao
+  { path: 'cadastro', loadChildren: () => import('./cadastro-container/cadastro-container.module').then(m => m.CadastroContainerModule),
+  },
+  { path: 'acesso-negado', redirectTo: '' },
 ];
 
 @NgModule({

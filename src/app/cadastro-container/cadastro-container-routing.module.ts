@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroContainerComponent } from './cadastro-container.component';
+import { AuthGuard } from '../services/auth-guard.service';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,7 @@ export const routes: Routes = [
       },
       {
         path: 'ecoponto',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./cadastro-container-ecoponto/cadastro-container-ecoponto.module').then(
             (module) => module.CadastroContainerEcopontoModule
@@ -28,6 +30,7 @@ export const routes: Routes = [
       },
       {
         path: 'horario',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import('./cadastro-container-horario/cadastro-container-horario.module').then(
             (module) => module.CadastroContainerHorarioModule
