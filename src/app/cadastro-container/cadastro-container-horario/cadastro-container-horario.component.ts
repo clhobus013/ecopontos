@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CadastroContainerComponent } from '../cadastro-container.component';
-import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { DiasFuncionamento } from 'src/app/models/diasFuncionamento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-container-horario',
@@ -14,7 +15,7 @@ export class CadastroContainerHorarioComponent implements OnInit {
   horarios!: FormArray;
   diasSemana!: DiasFuncionamento[];
 
-  constructor(private formContainer: CadastroContainerComponent) {}
+  constructor(private formContainer: CadastroContainerComponent, private router: Router) {}
 
   ngOnInit() {
     this.form = this.formContainer.getHorarioForm();
@@ -27,7 +28,7 @@ export class CadastroContainerHorarioComponent implements OnInit {
   }
 
   proximo() {
-    this.formContainer.proximoPasso();
+    this.router.navigate(["/cadastro/conclusao"]);
   }
 
 }

@@ -57,6 +57,25 @@ export class AuthGuard implements CanActivate, CanActivateChild{
             })
         }
 
+        if (activated.routeConfig?.path == "conclusao") {
+
+            //Verificar horario
+            const ecopontoId = localStorage.getItem('ecopontoId');
+
+            return new Observable<boolean>(subscriber => {
+                if (!ecopontoId) {
+                    subscriber.next(false);
+                    this.toast.error('Primeiro faça o cadastro do ecoponto', 'Acesso negado', {
+                        timeOut: 1500,
+                        positionClass: 'toast-bottom-right'
+                    });
+                    this.router.navigate(['/cadastro/ecoponto']);
+                } else {
+                    subscriber.next(true);
+                }
+            })
+        }
+
         if (typeof activated.data['rules'] !== 'undefined' && activated.data['rules'].length) {
             const rulesRota = activated.data['rules'];
             const rulesUsuario = localStorage.getItem('rulesUsuario');

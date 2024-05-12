@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroContainerComponent } from './cadastro-container.component';
 import { AuthGuard } from '../services/auth-guard.service';
+import { CadastroContainerConclusaoComponent } from './cadastro-container-conclusao/cadastro-container-conclusao.component';
 
 export const routes: Routes = [
   {
@@ -9,6 +10,7 @@ export const routes: Routes = [
     redirectTo: 'empresa',
     pathMatch: 'full',
   },
+  { path: 'conclusao', component: CadastroContainerConclusaoComponent},
   {
     path: '',
     component: CadastroContainerComponent,
