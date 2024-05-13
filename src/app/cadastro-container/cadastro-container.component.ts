@@ -63,7 +63,7 @@ export class CadastroContainerComponent implements OnInit {
         telefone: [null, [Validators.required]],
         redeSocial: [null, [Validators.required]],
         email: [null, [Validators.required, Validators.email]],
-        senha: [null, [Validators.required]],
+        senha: [null, [Validators.required, Validators.minLength(8)]],
         descricaoOutrosProjetos: [null],
       }),
       ecoponto: this.formBuilder.group({

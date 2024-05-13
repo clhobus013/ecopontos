@@ -13,7 +13,7 @@
     
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="cnpj" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.cnpj') ? 'is-invalid' : ''" type="text" placeholder="Cnpj" aria-label="default input example">
+            <input formControlName="cnpj" id="cnpj" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.cnpj') ? 'is-invalid' : ''" type="text" aria-label="default input example" [attr.validation]="true" [attr.showMaskTyped]="true" mask="00.000.000/0000-00">
             <div *ngIf="!formContainer.isFieldValid('empresa.cnpj')"
             [ngClass]="formContainer.displayFieldCss('empresa.cnpj')">Por favor, informe o cnpj da empresa</div>
         </div>
@@ -31,7 +31,7 @@
 
     <div class="col-12 d-flex flex-wrap justify-content-between">
         <div class="col-12 col-md-6 mb-3 pe-md-1">
-            <input formControlName="telefone" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.telefone') ? 'is-invalid' : ''" type="text" placeholder="Telefone" aria-label="default input example">
+            <input formControlName="telefone" class="form-control" [ngClass]="!formContainer.isFieldValid('empresa.telefone') ? 'is-invalid' : ''" type="text" placeholder="Telefone" aria-label="default input example" mask="(00) 0000-0000||(00) 0 0000-0000">
             <div *ngIf="!formContainer.isFieldValid('empresa.telefone')"
             [ngClass]="formContainer.displayFieldCss('empresa.telefone')">Por favor, informe um telefone para contato</div>
         </div>

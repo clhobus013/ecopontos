@@ -13,7 +13,7 @@
             <div class="col-12 col-md-6 mb-3 pe-md-1">
                 <input formControlName="cep" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.cep') ? 'is-invalid' : ''" type="text"
-                    placeholder="Cep" aria-label="default input example">
+                    placeholder="Cep" aria-label="default input example" mask="00000-000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.cep')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cep')">Por favor, informe o cep</div>
             </div>
@@ -21,7 +21,7 @@
             <div class="col-12 col-md-6 mb-3 ps-md-1">
                 <input formControlName="estado" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.estado') ? 'is-invalid' : ''"
-                    type="text" placeholder="Estado" aria-label="default input example">
+                    type="text" placeholder="Estado" aria-label="default input example" mask="SS">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.estado')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.estado')">Por favor, informe o estado
                 </div>
