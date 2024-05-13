@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  aberto = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public toggleNavBar() {
+    this.aberto = !this.aberto;
   }
 
 }
