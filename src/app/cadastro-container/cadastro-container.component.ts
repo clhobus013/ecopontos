@@ -89,9 +89,9 @@ export class CadastroContainerComponent implements OnInit {
         horarios: this.formBuilder.array(
           this.diasFuncionamento.map(() => {
             return this.formBuilder.group({
-              dia: [null, [Validators.required]],
-              inicio: [null, [Validators.required]],
-              fim: [null, [Validators.required]],
+              diaSemana: [null, [Validators.required]],
+              horaInicial: [null, [Validators.required]],
+              horaFinal: [null, [Validators.required]],
             })
           })
         )
