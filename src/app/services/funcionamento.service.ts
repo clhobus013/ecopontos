@@ -23,33 +23,24 @@ export class FuncionamentoService {
 
   constructor(private http: HttpClient) { }
 
-  getFuncionamentos(): any {
-    return this.http.get<Funcionamento>(this._url + "/funcionamento", this.requestOptions);
-  }
-
-  getFuncionamentoPorId(id: number): any {
-    console.log("Funcionamento id ", id);
-    return this.http.get<Funcionamento>(this._url + "/funcionamento/" + id, this.requestOptions);
-  }
-
   postFuncionamento(ecopontoId: number, funcionamentos: Funcionamento[]): any {
 
     const body = {
       "ecoponto_id": ecopontoId,
-      "dia_funcionamento": [
-        funcionamentos.map((func: Funcionamento)=> func.getFuncionamentoFormatadoApi())
-      ]
+      "dia_funcionamento": funcionamentos.map((func: Funcionamento)=> func.getFuncionamentoFormatadoApi())
     }
 
-    console.log(" >> >> RESULTADO CORPO FORMATADO ", body);
-
-    // const funcionamentoFormatado = funcionamento.getFuncionamentoFormatadoApi()
-    return this.http.post<ErroDefault>(this._url + "/funcionamento", body);
+    return this.http.post<ErroDefault>(this._url + "/ecoponto/funcionamento", body);
   }
 
-  putFuncionamento(funcionamento: Funcionamento): any {
-    const funcionamentoFormatado = funcionamento.getFuncionamentoFormatadoApi();
-    return this.http.put<ErroDefault>(this._url + "/funcionamento/" + funcionamento.id, funcionamentoFormatado);
+  putFuncionamento(ecopontoId: number, funcionamentos: Funcionamento[]): any {
+
+    const body = {
+      "ecoponto_id": ecopontoId,
+      "dia_funcionamento": funcionamentos.map((func: Funcionamento)=> { return func.getFuncionamentoFormatadoApi()})
+    }
+
+    return this.http.put<ErroDefault>(this._url + "/ecoponto/funcionamento", body);
   }
 
 }

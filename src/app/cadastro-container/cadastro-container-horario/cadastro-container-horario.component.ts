@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Funcionamento } from 'src/app/models/funcionamento';
 import { FuncionamentoService } from 'src/app/services/funcionamento.service';
 import { ToastrService } from 'ngx-toastr';
+import { EcopontoService } from 'src/app/services/ecoponto.service';
 
 @Component({
   selector: 'app-cadastro-container-horario',
@@ -18,40 +19,106 @@ export class CadastroContainerHorarioComponent implements OnInit {
   ecopontoId: string|null = null;
   horarios!: FormArray;
   diasSemana!: DiasFuncionamento[];
+  diasEdicao: string[] = [];
 
-  constructor(private formContainer: CadastroContainerComponent, private router: Router, private funcionamentoService: FuncionamentoService, private toastr: ToastrService) {}
+  constructor(private formContainer: CadastroContainerComponent, private router: Router, private funcionamentoService: FuncionamentoService, private ecopontoService: EcopontoService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.form = this.formContainer.getHorarioForm();
     this.ecopontoId = localStorage.getItem('ecopontoId');
     this.horarios = this.form.get('horarios') as FormArray;
     this.diasSemana = this.formContainer.diasFuncionamento;
+
+    this.buscaHorarios();
   }
 
   getHorario(itemIndex: number) {
     return this.horarios.at(itemIndex) as FormGroup;
   }
 
-  salvar() {
-    console.log(">> SALVANDO HORARIO ", this.form);
+  buscaHorarios() {
+    this.ecopontoService.getEcopontoPorId(parseInt(this.ecopontoId!))
+      .subscribe(
+        (data: any) => {
+          console.log(data);
 
-    this.salvaFuncionamento();
+          data.values.dia_funcionamento.map((func: any)=> {
+            
+            let index = this.diasSemana.map((dia) => dia.substring(0, 3).toLowerCase()).indexOf(func.dia_semana);
+            
+            this.diasEdicao.push(func.dia_semana);
+            
+            this.horarios.at(index)?.setValue({
+              diaSemana: true,
+              horaInicial: func.hora_inicial,
+              horaFinal: func.hora_final,
+            })
+          })
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      )
+  }
+
+  async salvar() {
+
+    let funcionamentos: Funcionamento[] = [];
+
+    for(let i=0; i< this.form.value.horarios.length; i++) {
+      if (this.form.value.horarios[i].diaSemana) {
+        funcionamentos.push(new Funcionamento(
+          {
+            diaSemana: this.diasSemana[i].substring(0, 3).toLowerCase().replace("á", "a"),
+            horaInicial: this.form.value.horarios[i].horaInicial,
+            horaFinal: this.form.value.horarios[i].horaFinal,
+          }
+        ))
+      }
+    }
+
+    await this.salvaFuncionamento(funcionamentos);
+    await this.editaFuncionamento(funcionamentos);
+
+    this.router.navigate(["/cadastro/conclusao"]);
     
   }
 
-  public salvaFuncionamento() {
-    this.funcionamentoService.postFuncionamento(parseInt(this.ecopontoId!), this.form.value.horarios.map((value: any) => new Funcionamento(value)))
+  public async salvaFuncionamento(funcionamentos: Funcionamento[]) {
+
+    funcionamentos = funcionamentos.filter((func: Funcionamento) => this.diasEdicao.indexOf(func.diaSemana!) < 0);
+
+    if (funcionamentos.length <= 0) {
+      return;
+    }
+
+    await this.funcionamentoService.postFuncionamento(parseInt(this.ecopontoId!), funcionamentos)
       .subscribe(
         (data: any) => {
-          console.log(">> >> RESULTADO ", data);
+          console.log(">> >> RESULTADO SALVAR ", data);
+        },
+        (error: any) => {
+          console.log(error);
+          this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
+            timeOut: 2000,
+            positionClass: 'toast-bottom-right'
+          });
+        }
+      );
+  }
 
-          // localStorage.setItem('horarios', data.value.id);
-          
-          // this.toastr.success('Realize o cadastro dos ecopontos!', 'Empresa salva com sucesso', {
-          //   timeOut: 1500,
-          //   positionClass: 'toast-bottom-right'
-          // });
-          this.router.navigate(["/cadastro/conclusao"]);
+  public async editaFuncionamento(funcionamentos: Funcionamento[]) {
+
+    funcionamentos = funcionamentos.filter((func: Funcionamento) => this.diasEdicao.indexOf(func.diaSemana!) >=0);
+    
+    if (funcionamentos.length <= 0) {
+      return;
+    }
+
+    await this.funcionamentoService.putFuncionamento(parseInt(this.ecopontoId!), funcionamentos)
+      .subscribe(
+        (data: any) => {
+          console.log(">> >> RESULTADO EDITAR ", data);
         },
         (error: any) => {
           console.log(error);

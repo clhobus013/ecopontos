@@ -56,12 +56,12 @@ export class CadastroContainerComponent implements OnInit {
       empresa: this.formBuilder.group({
         id: [{value: null, disabled:true}],
         nomeFantasia: [null, [Validators.required]],
-        razaoSocial: [null, [Validators.required]],
+        razaoSocial: [null],
         cnpj: [null, [Validators.required]],
-        ramoAtuacao: [null, [Validators.required]],
+        ramoAtuacao: [null],
         nomeContatoResponsavel: [null, [Validators.required]],
         telefone: [null, [Validators.required]],
-        redeSocial: [null, [Validators.required]],
+        redeSocial: [null],
         email: [null, [Validators.required, Validators.email]],
         senha: [null, [Validators.required, Validators.minLength(8)]],
         descricaoOutrosProjetos: [null],
@@ -89,9 +89,9 @@ export class CadastroContainerComponent implements OnInit {
         horarios: this.formBuilder.array(
           this.diasFuncionamento.map(() => {
             return this.formBuilder.group({
-              diaSemana: [null, [Validators.required]],
-              horaInicial: [null, [Validators.required]],
-              horaFinal: [null, [Validators.required]],
+              diaSemana: [null],
+              horaInicial: [null],
+              horaFinal: [null],
             })
           })
         )

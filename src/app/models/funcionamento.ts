@@ -2,7 +2,7 @@ import { DiasFuncionamento } from "./diasFuncionamento";
 
 export class Funcionamento {
     id: number = 0;
-    diaSemana: DiasFuncionamento|null = null;
+    diaSemana: string|null = null;
     horaInicial: string = "";
     horaFinal: string = "";
 

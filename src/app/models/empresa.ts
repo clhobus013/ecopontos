@@ -17,17 +17,17 @@ export interface IEmpresa {
 
 export class Empresa {
     id: number = 0;
-    nomeFantasia: string = "";
-    razaoSocial: string = "";
-    cnpj: string = "";
-    nomeContatoResponsavel: string = "";
-    ramoAtuacao: string = "";
-    telefone: string = "";
-    email: string = "";
-    senha: string = "";
-    redeSocial: string = "";
+    nomeFantasia: string|null = null;
+    razaoSocial: string|null = null;
+    cnpj: string|null = null;
+    nomeContatoResponsavel: string|null = null;
+    ramoAtuacao: string|null = null;
+    telefone: string|null = null;
+    email: string|null = null;
+    senha: string|null = null;
+    redeSocial: string|null = null;
     participacaoOutrosProjetos: boolean = false;
-    descricaoOutrosProjetos: string = "";
+    descricaoOutrosProjetos: string|null = null;
     aceiteTermo: AceiteTermo[] = [];
     ecopontos: Ecoponto[] = [];
 

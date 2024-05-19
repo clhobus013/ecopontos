@@ -8,8 +8,8 @@ export class Ecoponto {
     nome: string = "";
     abertoPublico: boolean = true;
     situacao: string = "";
-    dataInicio: string = "";
-    dataFinal: string = "";
+    dataInicio: string|null = null;
+    dataFinal: string|null = null;
     ativo: boolean = true;
     empresa: Empresa|undefined;
     diasFuncionamento: DiasFuncionamento[] = [];
