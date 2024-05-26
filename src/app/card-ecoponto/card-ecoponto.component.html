@@ -1,10 +1,10 @@
-<div class="col-12 m-auto">
+<div *ngIf="ecoponto" class="col-12 m-auto">
 
-    <p class="text-center fw-bold">{{ecoponto?.nome}}</p>
-    <p class="text-center">{{ecoponto?.situacao}}</p>
+    <p class="text-center fw-bold">{{ecoponto.nome}}</p>
+    <p class="text-center">{{ecoponto.situacao}}</p>
 
     <div class="d-flex justify-content-between">
-        <button class="btn btn-primary"><fa-icon [icon]="faTrash"></fa-icon></button>
-        <button class="btn btn-primary"><fa-icon [icon]="faPen"></fa-icon></button>
+        <button class="btn btn-primary"><fa-icon [icon]="faTrash" (click)="remover()"></fa-icon></button>
+        <button class="btn btn-primary"><fa-icon [icon]="faPen" (click)="editar()"></fa-icon></button>
     </div>
 </div>

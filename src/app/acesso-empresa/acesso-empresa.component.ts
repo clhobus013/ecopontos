@@ -31,6 +31,13 @@ export class AcessoEmpresaComponent implements OnInit {
     }
   }
 
+  recebeAtualizacao(respostaEcoponto: any) {
+    // Remove ecoponto
+    if (respostaEcoponto.ecoponto == null) {
+      this.empresa.ecopontos.splice(respostaEcoponto.index, 1);
+    }
+  }
+
   private buscaEmpresa(id: number) {
     this.empresaService.getEmpresaPorId(id).subscribe(
       (data: any) => {

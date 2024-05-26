@@ -43,4 +43,8 @@ export class EcopontoService {
     return this.http.put<ErroDefault>(this._url + "/ecoponto/" + ecoponto.id, ecopontoFormatado);
   }
 
+  deleteEcoponto(id: number): any {
+    return this.http.delete<ErroDefault>(this._url + "/ecoponto/" + id);
+  }
+
 }
