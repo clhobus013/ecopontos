@@ -15,6 +15,8 @@ import { HeaderComponent } from './header/header.component';
 import { ResiduoComponent } from './residuo/residuo.component';
 import { FiltroComponent } from './filtro/filtro.component';
 import { MapaComponent } from './mapa/mapa.component';
+import { AcessoEmpresaComponent } from './acesso-empresa/acesso-empresa.component';
+import { CardEcopontoComponent } from './card-ecoponto/card-ecoponto.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { MapaComponent } from './mapa/mapa.component';
     ResiduoComponent,
     FiltroComponent,
     MapaComponent,
+    AcessoEmpresaComponent,
+    CardEcopontoComponent,
   ],
   imports: [
     BrowserModule,

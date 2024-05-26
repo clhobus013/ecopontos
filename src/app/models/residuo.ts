@@ -1,10 +1,14 @@
 import { Categoria } from "./categoria";
 
-export interface Residuo {
-    descricao: string,
-    icone: string,
-    url_midia: string,
-    recolhido_em_ecoponto: boolean,
-    ativo: boolean,
-    categorias: Categoria[],
+export class Residuo {
+    descricao: string|null = null;
+    icone: string|null = null;
+    urlMidia: string|null = null;
+    recolhidoEcoponto: boolean = false;
+    ativo: boolean = false;
+    categorias: Categoria[] = [];
+
+    constructor(init?: Partial<Residuo>) {
+        Object.assign(this, init);
+    }
 }

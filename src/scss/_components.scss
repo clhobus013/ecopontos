@@ -1,5 +1,23 @@
 // estilos de componentes reusáveis como header, footer, botoes, cards...
 
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 6px $primary; 
+    background-color: $primary;
+    // opacity: 0.7;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $primary;
+    // -webkit-box-shadow: inset 0 0 6px $primary; 
+}
+
 .comp-card {
     border-radius: 35px;
     border: #B0ADA9 solid 1px;
