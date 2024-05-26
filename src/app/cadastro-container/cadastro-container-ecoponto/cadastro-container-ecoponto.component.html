@@ -61,7 +61,7 @@
             <div class="col-4 col-md-3 mb-3 ps-1">
                 <input formControlName="numero" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.numero') ? 'is-invalid' : ''"
-                    type="text" placeholder="Número" aria-label="default input example">
+                    type="text" placeholder="Número" aria-label="default input example" mask="00000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.numero')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.numero')">Por favor, informe o número
                 </div>
@@ -72,7 +72,7 @@
             <div class="col-12 col-md-6 mb-3 pe-md-1">
                 <input formControlName="longitude" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.longitude') ? 'is-invalid' : ''"
-                    type="text" placeholder="Longitude" aria-label="default input example">
+                    type="text" placeholder="Longitude" aria-label="default input example" [allowNegativeNumbers]="true" mask="00.0000000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.longitude')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.longitude')">Por favor, informe a
                     longitude</div>
@@ -82,7 +82,7 @@
             <div class="col-12 col-md-6 mb-3 ps-md-1">
                 <input formControlName="latitude" class="form-control" type="text"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.latitude') ? 'is-invalid' : ''"
-                    placeholder="Latitude" aria-label="default input example">
+                    placeholder="Latitude" aria-label="default input example" [allowNegativeNumbers]="true" mask="00.0000000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.latitude')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.latitude')">Por favor, informe a
                     latitude</div>
