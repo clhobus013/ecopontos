@@ -1,0 +1,24 @@
+<div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 comp-card d-flex flex-column m-auto mt-4 position-relative">
+
+    <h1 class="text-primary text-center fw-bold p-4">Olá, nome voluntario</h1>
+
+    <app-loading [show]="loading"></app-loading>
+
+    <div *ngIf="!loading">
+        <div *ngFor="let situacao of situacoes">
+            <div class="d-flex" (click)="expandir(situacao)">
+                <fa-icon [icon]="situacao.aberto ? chevronUp : chevronDown" class="px-2"></fa-icon>
+                <p class="fs-3">{{situacao.situacao}}</p>
+            </div>
+    
+            <div *ngIf="situacao.aberto" class="d-flex flex-wrap">
+                <div *ngFor="let ecoponto of situacao.ecopontos ; let i = index" class="col-12 col-sm-5 col-xl-5 comp-card d-flex flex-column me-auto mb-2">
+                    <app-card-ecoponto [ecoponto]="ecoponto" [index]="i" [tipo]="2" (clickSituacao)="alteraSituacao($event)"></app-card-ecoponto>
+                </div>
+            </div>
+        </div>
+    
+        <app-situacoes-modal #situacaoModal [ecoponto]="ecopontoEditar" (retornaSituacao)="retornaSituacao($event)"></app-situacoes-modal>
+    </div>
+
+</div>

@@ -2,12 +2,13 @@ import { DiasFuncionamento } from "./diasFuncionamento";
 import { Empresa } from "./empresa";
 import { Localizacao } from "./localizacao";
 import { Residuo } from "./residuo";
+import { Situacao } from "./situacao";
 
 export class Ecoponto {
     id: number = 0;
     nome: string = "";
     abertoPublico: boolean = true;
-    situacao: string = "";
+    situacao: Situacao|undefined = undefined;
     dataInicio: string|null = null;
     dataFinal: string|null = null;
     ativo: boolean = true;
@@ -15,6 +16,7 @@ export class Ecoponto {
     diasFuncionamento: DiasFuncionamento[] = [];
     residuos: Residuo[] = [];
     localizacao: Localizacao|undefined;
+//   situacao_enum: NewType | null | undefined;
 
     constructor(init?: Partial<Ecoponto>) {
         Object.assign(this, init);
@@ -28,5 +30,20 @@ export class Ecoponto {
             empresa_id: this.empresa?.id,
             localizacao: [this.localizacao]
         };
+    }
+
+    static formataApi(value: any) {
+        return new Ecoponto(
+            {
+                id: value.id,
+                nome: value.nome,
+                abertoPublico: value.aberto_publico,
+                situacao: new Situacao({
+                    situacao: value.situacao,
+                    situacaoEnum: value.situacao_enum
+                }),
+                ativo: value.ativo,
+            }
+        )
     }
 }

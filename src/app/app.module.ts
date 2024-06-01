@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GoogleMapsModule } from '@angular/google-maps';
@@ -17,6 +18,9 @@ import { FiltroComponent } from './filtro/filtro.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { AcessoEmpresaComponent } from './acesso-empresa/acesso-empresa.component';
 import { CardEcopontoComponent } from './card-ecoponto/card-ecoponto.component';
+import { AcessoVoluntarioComponent } from './acesso-voluntario/acesso-voluntario.component';
+import { SituacoesModalComponent } from './situacoes-modal/situacoes-modal.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,9 @@ import { CardEcopontoComponent } from './card-ecoponto/card-ecoponto.component';
     MapaComponent,
     AcessoEmpresaComponent,
     CardEcopontoComponent,
+    AcessoVoluntarioComponent,
+    SituacoesModalComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +44,7 @@ import { CardEcopontoComponent } from './card-ecoponto/card-ecoponto.component';
     GoogleMapsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

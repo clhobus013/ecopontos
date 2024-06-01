@@ -7,6 +7,7 @@ import { Localizacao } from '../models/localizacao';
 import { Residuo } from '../models/residuo';
 import { Funcionamento } from '../models/funcionamento';
 import { faFileArrowDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Situacao } from '../models/situacao';
 
 @Component({
   selector: 'app-acesso-empresa',
@@ -59,7 +60,7 @@ export class AcessoEmpresaComponent implements OnInit {
             ecopontos: data.value.ecopontos.map((ecoponto: any)=> new Ecoponto({
                 id: ecoponto.id,
                 nome: ecoponto.nome,
-                situacao: ecoponto.situacao,
+                situacao: new Situacao({"situacao": ecoponto.situacao, "situacaoEnum": ecoponto.situacao_enum}),
                 diasFuncionamento: ecoponto.dia_funcionamento.map((funcionamento: any)=> new Funcionamento({
                     diaSemana: funcionamento.dia_semana,
                     horaInicial: funcionamento.hora_inicial,

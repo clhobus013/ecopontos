@@ -13,8 +13,10 @@ export class CardEcopontoComponent implements OnInit {
   // Recebe infos do elemento pai
   @Input() ecoponto: Ecoponto|undefined = undefined;
   @Input() index: number|undefined = undefined;
+  @Input() tipo: number = 0; // 1-empresa 2-voluntario
   // Envia infos para o elemento pai
   @Output() respostaEcoponto  = new EventEmitter();
+  @Output() clickSituacao  = new EventEmitter();
 
   faTrash = faTrash;
   faPen = faPen;
@@ -45,7 +47,11 @@ export class CardEcopontoComponent implements OnInit {
   }
 
   public editar() {
-    console.log(" IMPLEMENTAR!! ");
+    console.log("IMPLEMENTAR");
+  }
+
+  public alterarSituacao() {
+    this.clickSituacao.emit({"id": this.ecoponto!.id, "index": this.index, "ecoponto": this.ecoponto});
   }
 
 }

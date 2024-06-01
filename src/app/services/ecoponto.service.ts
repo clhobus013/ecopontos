@@ -47,4 +47,16 @@ export class EcopontoService {
     return this.http.delete<ErroDefault>(this._url + "/ecoponto/" + id);
   }
 
+  getEcopontosControle(): any {
+    return this.http.get<Ecoponto>(this._url + "/ecoponto/controle", this.requestOptions);
+  }
+
+  getSituacoes(): any {
+    return this.http.get<Ecoponto>(this._url + "/ecoponto/situacao", this.requestOptions);
+  }
+
+  putSituacao(situacao: string, ecopontoId: number): any {
+    return this.http.put<Ecoponto>(this._url + "/ecoponto/" + situacao + "/" + ecopontoId, this.requestOptions);
+  }
+
 }
