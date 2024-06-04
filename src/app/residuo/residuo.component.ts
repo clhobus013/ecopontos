@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { faCoffee, faSoap, faXRay, faLaptopMedical, faWineBottle, faPills, faBatteryEmpty } from '@fortawesome/free-solid-svg-icons'; 
+import { Component, Input, OnInit } from '@angular/core';
+import { Residuo } from '../models/residuo';
 
 @Component({
   selector: 'app-residuo',
@@ -8,17 +8,17 @@ import { faCoffee, faSoap, faXRay, faLaptopMedical, faWineBottle, faPills, faBat
 })
 export class ResiduoComponent implements OnInit {
 
-  faCoffee = faCoffee;
-  faSoap = faSoap;
-  faXRay = faXRay;
-  faLaptopMedical = faLaptopMedical;
-  faWineBottle = faWineBottle;
-  faPills = faPills;
-  faBatteryEmpty = faBatteryEmpty;
+  @Input() residuo?: Residuo;
+
+  selecionado: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public selecionar() {
+    this.residuo!.ativo = !this.residuo?.ativo;
   }
 
 }

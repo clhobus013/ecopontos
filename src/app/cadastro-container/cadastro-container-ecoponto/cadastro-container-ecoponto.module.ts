@@ -6,11 +6,12 @@ import { NgxMaskModule } from 'ngx-mask';
 
 import { CadastroContainerEcopontoRoutingModule } from './cadastro-container-ecoponto-routing.module';
 import { CadastroContainerEcopontoComponent } from './cadastro-container-ecoponto.component';
+import { ResiduoModule } from 'src/app/residuo/residuo.module';
 
 
 @NgModule({
   declarations: [
-    CadastroContainerEcopontoComponent
+    CadastroContainerEcopontoComponent,
   ],
   imports: [
     CommonModule,
@@ -18,6 +19,7 @@ import { CadastroContainerEcopontoComponent } from './cadastro-container-ecopont
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    ResiduoModule,
   ]
 })
 export class CadastroContainerEcopontoModule { }

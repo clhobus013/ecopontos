@@ -1,11 +1,6 @@
-<button class="btn btn-primary">
-    <fa-icon [icon]="faCoffee"></fa-icon>
-    <fa-icon [icon]="faSoap"></fa-icon>
-    <fa-icon [icon]="faXRay"></fa-icon>
-    Embalagem laminada ??
-    <fa-icon [icon]="faLaptopMedical"></fa-icon>
-    <fa-icon [icon]="faWineBottle"></fa-icon>
-    Isopor ??
-    <fa-icon [icon]="faPills"></fa-icon>
-    <fa-icon [icon]="faBatteryEmpty"></fa-icon>
-</button>
+
+
+<input type="checkbox" class="btn-check" id="{{residuo?.descricao}}" [checked]="residuo?.ativo" autocomplete="off" (click)="selecionar()">
+<label class="btn btn-outline-primary" for="{{residuo?.descricao}}">
+    <fa-icon [icon]="['fas', residuo!.icone ? residuo!.icone : 'trash']"></fa-icon>
+</label>

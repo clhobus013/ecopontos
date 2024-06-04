@@ -78,6 +78,7 @@ export class AcessoEmpresaComponent implements OnInit {
                 })),
                 abertoPublico: ecoponto.aberto_publico,
                 residuos: ecoponto.residuo.map((residuo: any) => new Residuo({
+                  id: residuo.id,
                   descricao: residuo.descricao,
                   icone: residuo.icone,
                   urlMidia: residuo.urlMidia,

@@ -61,7 +61,7 @@
             <div class="col-4 col-md-3 mb-3 ps-1">
                 <input formControlName="numero" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.numero') ? 'is-invalid' : ''"
-                    type="text" placeholder="Número" aria-label="default input example" mask="00000">
+                    type="text" placeholder="Número" aria-label="default input example" mask="99990">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.numero')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.numero')">Por favor, informe o número
                 </div>
@@ -99,8 +99,7 @@
     </div>
 
     <div class="mb-3">
-        <input formControlName="residuos" class="form-control" type="text" placeholder="Residuos - em desenv"
-            aria-label="default input example">
+        <app-residuo *ngFor="let residuo of residuos" class="px-1" [residuo]="residuo"></app-residuo>
     </div>
 
     <div class="d-grid gap-2 col-12 mx-auto">

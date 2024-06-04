@@ -4,6 +4,9 @@ import { CadastroContainerComponent } from '../cadastro-container.component';
 import { EcopontoService } from 'src/app/services/ecoponto.service';
 import { ToastrService } from 'ngx-toastr';
 import { Ecoponto } from 'src/app/models/ecoponto';
+import { Residuo } from 'src/app/models/residuo';
+import { Categoria } from 'src/app/models/categoria';
+import { IconName } from '@fortawesome/fontawesome-common-types';
 
 @Component({
   selector: 'app-cadastro-container-ecoponto',
@@ -16,6 +19,7 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   formLocalizacao!: FormGroup;
   ecopontoId: string|null = null;
   empresaId: string|null = null;
+  residuos: Residuo[] = [];
 
   constructor(public formContainer: CadastroContainerComponent, private ecopontoService: EcopontoService, private toastr: ToastrService) {}
 
@@ -29,9 +33,7 @@ export class CadastroContainerEcopontoComponent implements OnInit {
     console.log("Id Empresa >>>", parseInt(this.empresaId!));
     console.log("Id Ecoponto >>>", parseInt(this.ecopontoId!));
 
-    if (this.ecopontoId) {
-      this.buscaEcoponto()
-    }
+    this.buscarResiduos();
   }
 
   proximo() {
@@ -43,7 +45,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
     this.ecopontoService.getEcopontoPorId(parseInt(this.ecopontoId!))
       .subscribe(
         (data: any) => {
-          console.log(data);
 
           this.formLocalizacao.setValue({
             cep: data.values.localizacao[0].cep,
@@ -61,7 +62,11 @@ export class CadastroContainerEcopontoComponent implements OnInit {
             nome: data.values.nome,
             localizacao: this.formLocalizacao.value,
             abertoPublico: data.values.aberto_publico,
-            residuos: null,
+          })
+
+          data.values.residuo.map((residuo: Residuo) => {
+            let index = this.residuos.map((todosResiduos)=> todosResiduos.id).indexOf(residuo.id)
+            this.residuos[index].ativo = residuo.ativo;
           })
 
           console.log("Id do form", this.form.get("id"));
@@ -74,12 +79,11 @@ export class CadastroContainerEcopontoComponent implements OnInit {
 
   }
 
-  public salvarEcoponto() {
-    this.ecopontoService.postEcoponto(new Ecoponto({empresa: {id: this.empresaId}, ...this.form.value}))
+  public async salvarEcoponto() {
+    await this.ecopontoService.postEcoponto(new Ecoponto({empresa: {id: this.empresaId}, residuos: this.residuos, ...this.form.value}))
       .subscribe(
         (data: any) => {
-          console.log(data);
-
+          this.ecopontoId = data.value.id;
           localStorage.setItem('ecopontoId', data.value.id);
           
           this.toastr.success('Realize o cadastro do horário de funcionamento!', 'Ecoponto salvo com sucesso', {
@@ -98,12 +102,11 @@ export class CadastroContainerEcopontoComponent implements OnInit {
       );
   }
 
-  public editarEcoponto() {
-    this.ecopontoService.putEcoponto(new Ecoponto({id: this.ecopontoId, empresa: {id: this.empresaId}, ...this.form.value}))
+  public async editarEcoponto() {
+
+    await this.ecopontoService.putEcoponto(new Ecoponto({id: this.ecopontoId, empresa: {id: this.empresaId}, residuos: this.residuos, ...this.form.value}))
       .subscribe(
-        (data: any) => {
-          console.log(data);
-          
+        (data: any) => {          
           this.toastr.success('Realize o cadastro do horário de funcionamento!', 'Ecoponto salvo com sucesso', {
             timeOut: 1500,
             positionClass: 'toast-bottom-right'
@@ -138,6 +141,33 @@ export class CadastroContainerEcopontoComponent implements OnInit {
       this.salvarEcoponto();
     }
 
+  }
+
+  public async buscarResiduos() {
+
+    await this.ecopontoService.getResiduos()
+      .subscribe(
+        (data: any) => {
+          this.residuos = data.values.map((residuo: any) => 
+              new Residuo({
+                id: residuo.id,
+                descricao: residuo.descricao,
+                icone: residuo.icone as IconName,
+                urlMidia: residuo.url_midia,
+                recolhidoEcoponto: residuo.recolhido_em_ecoponto,
+                ativo: false,
+                categorias: residuo.categoria.map((categ: any) => new Categoria({descricao: categ.descricao, icone: categ.icone}))
+              })
+          );
+
+          if (this.ecopontoId) {
+            this.buscaEcoponto()
+          }
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
   }
 
 }

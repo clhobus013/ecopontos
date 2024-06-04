@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { ErroDefault } from '../models/erroDefault';
 import { Ecoponto } from '../models/ecoponto';
+import { Residuo } from '../models/residuo';
 
 @Injectable({
   providedIn: 'root'
@@ -59,4 +60,7 @@ export class EcopontoService {
     return this.http.put<Ecoponto>(this._url + "/ecoponto/" + situacao + "/" + ecopontoId, this.requestOptions);
   }
 
+  getResiduos(): any {
+    return this.http.get<Residuo>(this._url + "/residuo", this.requestOptions);
+  }
 }

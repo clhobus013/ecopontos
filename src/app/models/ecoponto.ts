@@ -28,7 +28,8 @@ export class Ecoponto {
             ativo: this.ativo,
             aberto_publico: this.abertoPublico,
             empresa_id: this.empresa?.id,
-            localizacao: [this.localizacao]
+            localizacao: [this.localizacao],
+            residuo: this.residuos.filter((residuo) => residuo.ativo).map((residuo) => {return {id: residuo.id}})
         };
     }
 

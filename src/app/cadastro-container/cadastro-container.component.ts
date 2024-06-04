@@ -79,8 +79,8 @@ export class CadastroContainerComponent implements OnInit {
           latitude: [null, [Validators.required]],
           longitude: [null, [Validators.required]],
         }),
-        abertoPublico: [null, [Validators.required]],
-        residuos: [null],
+        abertoPublico: [true, [Validators.required]],
+        // residuos: [null],
         // residuos: [null, [Validators.required]],
       }),
       // horario: this.formBuilder.group({
@@ -96,9 +96,9 @@ export class CadastroContainerComponent implements OnInit {
           })
         )
       }),
-      residuo: this.formBuilder.group({
-        id: [null, [Validators.required]],
-      }),
+      // residuo: this.formBuilder.group({
+      //   id: [null, [Validators.required]],
+      // }),
     });
   }
 

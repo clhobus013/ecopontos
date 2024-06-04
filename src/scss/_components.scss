@@ -15,8 +15,16 @@
     color: $primary;
 }
 
+.icon-secondary{
+    color: white;
+}
+
 .bg-cinza {
     background-color: #d9d9d966;
+}
+
+.btn {
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.25)
 }
 
 .comp-card {

@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderComponent } from './header/header.component';
-import { ResiduoComponent } from './residuo/residuo.component';
+
 import { FiltroComponent } from './filtro/filtro.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { AcessoEmpresaComponent } from './acesso-empresa/acesso-empresa.component';
@@ -21,13 +21,13 @@ import { CardEcopontoComponent } from './card-ecoponto/card-ecoponto.component';
 import { AcessoVoluntarioComponent } from './acesso-voluntario/acesso-voluntario.component';
 import { SituacoesModalComponent } from './situacoes-modal/situacoes-modal.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ResiduoModule } from './residuo/residuo.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     HeaderComponent,
-    ResiduoComponent,
     FiltroComponent,
     MapaComponent,
     AcessoEmpresaComponent,
@@ -44,7 +44,8 @@ import { LoadingComponent } from './loading/loading.component';
     GoogleMapsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ResiduoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
