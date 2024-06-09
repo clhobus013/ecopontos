@@ -1,21 +1,19 @@
 <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 comp-card d-flex flex-column m-auto mt-4">
 
     <div class="col-11 m-auto">
-        <h1 class="text-primary text-center fw-bold p-4">Olá, {{empresa.nomeFantasia}}</h1>
+        <h1 class="text-primary text-center fw-bold p-4">Olá {{empresa ? ", " + empresa.nomeFantasia : ""}}</h1>
 
         <h3>Dados cadastrados</h3>
 
-        <div class="px-3 pb-3">
-            <p class="mb-1"><strong>Nome Fantasia:</strong> {{empresa.nomeFantasia}}</p>
-            <p class="mb-1"><strong>Razão social:</strong> {{empresa.razaoSocial}}</p>
-
-            <p class="mb-1"><strong>CNPJ:</strong> {{empresa.cnpj}}</p>
-
-            <p class="mb-1"><strong>Ramo de atuação:</strong> {{empresa.ramoAtuacao}}</p>
-            <p class="mb-1"><strong>Telefone:</strong> {{empresa.telefone}}</p>
-            <p class="mb-1"><strong>Rede social:</strong> {{empresa.redeSocial}}</p>
-            <p class="mb-1"><strong>Nome responsável:</strong> {{empresa.nomeContatoResponsavel}}</p>
-            <p class="mb-1"><strong>Email:</strong> {{empresa.email}}</p>
+        <div class="px-3 pb-3 placeholder-glow">
+            <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Nome Fantasia:</strong>{{empresa?.nomeFantasia}}</p>
+            <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Razãosocial:</strong> {{empresa?.razaoSocial}}</p>
+            <p class="mb-1 col-8" [ngClass]="!empresa ? 'placeholder' : ''"><strong>CNPJ:</strong> {{empresa?.cnpj}}</p>
+            <p class="mb-1 col-8" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Ramo de atuação:</strong>{{empresa?.ramoAtuacao}}</p>
+            <p class="mb-1 col-6" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Telefone:</strong>{{empresa?.telefone}}</p>
+            <p class="mb-1 col-6" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Rede social:</strong>{{empresa?.redeSocial}}</p>
+            <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Nome responsável:</strong>{{empresa?.nomeContatoResponsavel}}</p>
+            <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Email:</strong> {{empresa?.email}}</p>
         </div>
 
         <button class="col-12 btn btn-primary fw-bold btn-lg" routerLink="/cadastro/empresa">Editar cadastro</button>
@@ -23,12 +21,14 @@
         <h3 class="py-3 mb-0">Ecopontos</h3>
 
         <div class="col-12 d-flex">
-            <div *ngIf="empresa.ecopontos.length <= 0" class="col-11">
+            <div *ngIf="!empresa || empresa.ecopontos.length <= 0" class="col-11">
                 <p class="text-primary text-center fs-5 fw-bold p-4">Nenhum ecoponto encontrado</p>
             </div>
-            <div *ngIf="empresa.ecopontos.length > 0" class="col-11 d-flex overflow-auto px-2">
-                <div *ngFor="let ecoponto of empresa.ecopontos; let i = index" class="col-6 col-xl-5 comp-card d-flex flex-column mx-2">
-                    <app-card-ecoponto [ecoponto]="ecoponto" [index]="i" [tipo]="1" (respostaEcoponto)="recebeAtualizacao($event)"></app-card-ecoponto>
+            <div *ngIf="!empresa || empresa.ecopontos.length > 0" class="col-11 d-flex overflow-auto px-2">
+                <div *ngFor="let ecoponto of empresa?.ecopontos; let i = index"
+                    class="col-6 col-xl-5 comp-card d-flex flex-column mx-2">
+                    <app-card-ecoponto [ecoponto]="ecoponto" [index]="i" [tipo]="1"
+                        (respostaEcoponto)="recebeAtualizacao($event)"></app-card-ecoponto>
                 </div>
             </div>
             <div class="col-1 d-flex flex-wrap">

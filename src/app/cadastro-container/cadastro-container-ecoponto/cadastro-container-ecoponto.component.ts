@@ -103,7 +103,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   }
 
   public async editarEcoponto() {
-
     await this.ecopontoService.putEcoponto(new Ecoponto({id: this.ecopontoId, empresa: {id: this.empresaId}, residuos: this.residuos, ...this.form.value}))
       .subscribe(
         (data: any) => {          
@@ -124,7 +123,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   }
 
   public salvar(){
-
     this.formContainer.enviado = true;
 
     if (!this.form.valid) {
@@ -144,7 +142,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   }
 
   public async buscarResiduos() {
-
     await this.ecopontoService.getResiduos()
       .subscribe(
         (data: any) => {

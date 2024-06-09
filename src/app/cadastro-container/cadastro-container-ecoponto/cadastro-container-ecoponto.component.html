@@ -15,7 +15,8 @@
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.cep') ? 'is-invalid' : ''" type="text"
                     placeholder="Cep" aria-label="default input example" mask="00000-000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.cep')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cep')">Por favor, informe o cep</div>
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cep')">Por favor, informe o cep
+                </div>
             </div>
 
             <div class="col-12 col-md-6 mb-3 ps-md-1">
@@ -23,7 +24,8 @@
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.estado') ? 'is-invalid' : ''"
                     type="text" placeholder="Estado" aria-label="default input example" mask="SS">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.estado')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.estado')">Por favor, informe o estado
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.estado')">Por favor, informe o
+                    estado
                 </div>
             </div>
         </div>
@@ -34,7 +36,8 @@
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.cidade') ? 'is-invalid' : ''"
                     type="text" placeholder="Cidade" aria-label="default input example">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.cidade')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cidade')">Por favor, informe a cidade
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.cidade')">Por favor, informe a
+                    cidade
                 </div>
             </div>
 
@@ -43,7 +46,8 @@
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.bairro') ? 'is-invalid' : ''"
                     type="text" placeholder="Bairro" aria-label="default input example">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.bairro')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.bairro')">Por favor, informe o bairro
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.bairro')">Por favor, informe o
+                    bairro
                 </div>
             </div>
         </div>
@@ -54,7 +58,8 @@
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.rua') ? 'is-invalid' : ''" type="text"
                     placeholder="Endereço" aria-label="default input example">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.rua')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.rua')">Por favor, informe o endereço
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.rua')">Por favor, informe o
+                    endereço
                 </div>
             </div>
 
@@ -63,7 +68,8 @@
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.numero') ? 'is-invalid' : ''"
                     type="text" placeholder="Número" aria-label="default input example" mask="99990">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.numero')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.numero')">Por favor, informe o número
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.numero')">Por favor, informe o
+                    número
                 </div>
             </div>
         </div>
@@ -72,7 +78,8 @@
             <div class="col-12 col-md-6 mb-3 pe-md-1">
                 <input formControlName="longitude" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.longitude') ? 'is-invalid' : ''"
-                    type="text" placeholder="Longitude" aria-label="default input example" [allowNegativeNumbers]="true" mask="00.0000000">
+                    type="text" placeholder="Longitude" aria-label="default input example" [allowNegativeNumbers]="true"
+                    mask="00.0000000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.longitude')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.longitude')">Por favor, informe a
                     longitude</div>
@@ -82,7 +89,8 @@
             <div class="col-12 col-md-6 mb-3 ps-md-1">
                 <input formControlName="latitude" class="form-control" type="text"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.latitude') ? 'is-invalid' : ''"
-                    placeholder="Latitude" aria-label="default input example" [allowNegativeNumbers]="true" mask="00.0000000">
+                    placeholder="Latitude" aria-label="default input example" [allowNegativeNumbers]="true"
+                    mask="00.0000000">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.latitude')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.latitude')">Por favor, informe a
                     latitude</div>
@@ -107,3 +115,4 @@
         <button type="button" class="btn btn-primary fw-bold display-1 btn-lg" (click)="salvar()">Próximo</button>
     </div>
 </div>
+<!-- </div> -->

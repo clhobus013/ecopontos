@@ -17,7 +17,6 @@ export class AcessoVoluntarioComponent implements OnInit {
   ecopontoEditar?: Ecoponto;
   situacoes: Situacao[] = [];
   aberto: boolean = false;
-  loading: boolean = false;
 
   chevronUp = faChevronUp;
   chevronDown = faChevronDown;
@@ -33,9 +32,6 @@ export class AcessoVoluntarioComponent implements OnInit {
   }
 
   public buscaEcopontos() {
-
-    this.loading = true;
-
     this.ecopontoService.getEcopontosControle().subscribe(
       (data: any) => {
 
@@ -48,11 +44,9 @@ export class AcessoVoluntarioComponent implements OnInit {
               "ecopontos": value.ecopontos.map((ecoponto: Ecoponto)=> Ecoponto.formataApi(ecoponto))
           }))
         });
-        this.loading = false;
       },
       (error: any) => {
         console.log(error);
-        this.loading = false;
       }
     );
   }

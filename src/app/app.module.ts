@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -8,6 +8,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LoadingModule } from './loading/loading.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,8 +21,8 @@ import { AcessoEmpresaComponent } from './acesso-empresa/acesso-empresa.componen
 import { CardEcopontoComponent } from './card-ecoponto/card-ecoponto.component';
 import { AcessoVoluntarioComponent } from './acesso-voluntario/acesso-voluntario.component';
 import { SituacoesModalComponent } from './situacoes-modal/situacoes-modal.component';
-import { LoadingComponent } from './loading/loading.component';
 import { ResiduoModule } from './residuo/residuo.module';
+import { LoadingInterceptor } from './loading/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,6 @@ import { ResiduoModule } from './residuo/residuo.module';
     CardEcopontoComponent,
     AcessoVoluntarioComponent,
     SituacoesModalComponent,
-    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +46,13 @@ import { ResiduoModule } from './residuo/residuo.module';
     ToastrModule.forRoot(),
     FormsModule,
     ResiduoModule,
+    LoadingModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptor,
+    multi: true
+ }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

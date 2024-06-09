@@ -19,7 +19,7 @@ export class AcessoEmpresaComponent implements OnInit {
   faPlus = faPlus;
   faArrowDown = faFileArrowDown;
 
-  empresa!: Empresa;
+  empresa: Empresa | undefined;
   ecopontos: Ecoponto[] = [];
 
   constructor(private empresaService: EmpresaService, ecopontoService: EcopontoService) {}
@@ -35,7 +35,7 @@ export class AcessoEmpresaComponent implements OnInit {
   recebeAtualizacao(respostaEcoponto: any) {
     // Remove ecoponto
     if (respostaEcoponto.ecoponto == null) {
-      this.empresa.ecopontos.splice(respostaEcoponto.index, 1);
+      this.empresa?.ecopontos.splice(respostaEcoponto.index, 1);
     }
   }
 

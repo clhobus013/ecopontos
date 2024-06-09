@@ -2,9 +2,7 @@
 
     <h1 class="text-primary text-center fw-bold p-4">Olá, nome voluntario</h1>
 
-    <app-loading [show]="loading"></app-loading>
-
-    <div *ngIf="!loading">
+    <div>
         <div *ngFor="let situacao of situacoes">
             <div class="d-flex" (click)="expandir(situacao)">
                 <fa-icon [icon]="situacao.aberto ? chevronUp : chevronDown" class="px-2"></fa-icon>
