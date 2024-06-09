@@ -3,4 +3,5 @@
 <input type="checkbox" class="btn-check" id="{{residuo?.descricao}}" [checked]="residuo?.ativo" autocomplete="off" (click)="selecionar()">
 <label class="btn btn-outline-primary" for="{{residuo?.descricao}}">
     <fa-icon [icon]="['fas', residuo!.icone ? residuo!.icone : 'trash']"></fa-icon>
+    <p class="m-0">{{residuo?.descricao}}</p>
 </label>
