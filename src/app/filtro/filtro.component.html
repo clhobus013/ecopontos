@@ -11,7 +11,10 @@
             <span class="fw-bold text-primary">Por resíduo</span>
             <div *ngFor="let residuo of residuos; index as i" class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                <label class="form-check-label text-primary" for="flexCheckChecked">{{residuo}}</label>
+                <label class="form-check-label text-primary" for="flexCheckChecked">
+                    <fa-icon [icon]="['fas', residuo!.icone ? residuo!.icone : 'trash']"></fa-icon>
+                    {{residuo.descricao}}
+                </label>
             </div>
         </div>
 
