@@ -3,6 +3,7 @@ import { EcopontoService } from '../services/ecoponto.service';
 import { Residuo } from '../models/residuo';
 import { IconName } from '@fortawesome/fontawesome-common-types';
 import { Categoria } from '../models/categoria';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filtro',
@@ -11,11 +12,26 @@ import { Categoria } from '../models/categoria';
 })
 export class FiltroComponent implements OnInit {
 
+  form!: FormGroup;
+
+  localizacao: string = "";
   residuos: Residuo[] = [];
 
-  constructor(private ecopontoService: EcopontoService) { }
+  constructor(private ecopontoService: EcopontoService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.form = this.formBuilder.group({
+      localizacao: [""],
+      residuos: this.formBuilder.array(
+        this.residuos.map(() => {
+          return this.formBuilder.group({
+            ativo: [true],
+          })
+        })
+      )
+    });
+
     this.buscarResiduos();
   }
 
@@ -39,6 +55,10 @@ export class FiltroComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  public filtrar() {
+    console.log(" FILTROU >> localizacao", this.localizacao, this.residuos)
   }
 
 }

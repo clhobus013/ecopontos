@@ -79,7 +79,7 @@
                 <input formControlName="longitude" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.longitude') ? 'is-invalid' : ''"
                     type="text" placeholder="Longitude" aria-label="default input example" [allowNegativeNumbers]="true"
-                    mask="00.0000000">
+                    mask="00.0000000" [dropSpecialCharacters]="false">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.longitude')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.longitude')">Por favor, informe a
                     longitude</div>
@@ -90,7 +90,7 @@
                 <input formControlName="latitude" class="form-control" type="text"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.latitude') ? 'is-invalid' : ''"
                     placeholder="Latitude" aria-label="default input example" [allowNegativeNumbers]="true"
-                    mask="00.0000000">
+                    mask="00.0000000" [dropSpecialCharacters]="false">
                 <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.latitude')"
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.latitude')">Por favor, informe a
                     latitude</div>

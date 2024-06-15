@@ -29,7 +29,6 @@ export class EcopontoService {
   }
 
   getEcopontoPorId(id: number): any {
-    console.log("ecoponto id ", id);
     return this.http.get<Ecoponto>(this._url + "/ecoponto/" + id, this.requestOptions);
   }
 
@@ -62,5 +61,21 @@ export class EcopontoService {
 
   getResiduos(): any {
     return this.http.get<Residuo>(this._url + "/residuo", this.requestOptions);
+  }
+
+  filtrarEcopontos(localizacao?: string, residuoId?: number): any {
+
+    let params = "";
+
+    if (localizacao) {
+      params += "?localizacao=" + localizacao;
+    }
+
+    if (residuoId) {
+      params += !params ? "?" : "&";
+      params += "residuo_id=" + residuoId;
+    }
+
+    return this.http.get<Ecoponto>(this._url + "/ecoponto" + params, this.requestOptions);
   }
 }

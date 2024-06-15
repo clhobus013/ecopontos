@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { EcopontoService } from '../services/ecoponto.service';
 
 @Component({
   selector: 'app-mapa',
@@ -24,29 +25,7 @@ export class MapaComponent implements OnInit {
   center: google.maps.LatLngLiteral = { lat: -29.1681, lng: -51.1792 }; // Coordenadas de Caxias do Sul
   zoom = 13;
 
-  icons: Record<string, { icon: string }> = {
-    point1: {
-      icon: 'assets/icone_ecoponto1.png'
-    },
-    point2: {
-      icon: 'assets/icone_ecoponto2.png'
-    },
-    point3: {
-      icon: 'assets/icone_ecoponto2.png'
-    },
-    point4: {
-      icon: 'assets/icone_ecoponto2.png'
-    },
-    point5: {
-      icon: 'assets/icone_ecoponto2.png'
-    },
-    point6: {
-      icon: 'assets/icone_ecoponto2.png'
-    },
-    point7: {
-      icon: 'assets/icone_ecoponto2.png'
-    }
-  };
+  icon = 'assets/icone_ecoponto2.png';
 
   markers: google.maps.LatLngLiteral[] = [
     { lat: -29.167, lng: -51.179 },
@@ -58,15 +37,33 @@ export class MapaComponent implements OnInit {
     { lat: -29.13374, lng: -51.19270 }
   ];
 
-  constructor() { }
+  constructor(private ecopontoService: EcopontoService) { }
 
   ngOnInit(): void {
+    this.filtrarEcopontos();
   }
 
   moveMap(event: google.maps.MapMouseEvent) {
     if (event.latLng) {
       this.center = event.latLng.toJSON();
     }
+  }
+
+  filtrarEcopontos() {
+    this.ecopontoService.filtrarEcopontos("")
+    .subscribe(
+      (data: any) => {
+        data.values.map((value: any)=> {
+          this.markers.push({
+            lat: Number(value.localizacao[0].latitude),
+            lng: Number(value.localizacao[0].longitude),
+          })
+        })
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    )
   }
 
 }

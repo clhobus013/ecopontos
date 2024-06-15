@@ -1,10 +1,10 @@
 <div class="comp-card filtro-card">
     <h1 class="text-primary fw-bold">Filtros</h1>
 
-    <form>
+    <form [formGroup]="form">
         <div class="mb-3">
           <label for="input-local" class="form-label fw-bold text-primary">Por localidade</label>
-          <input type="text" class="form-control text-primary" id="input-local" aria-describedby="Local do ecoponto" placeholder="Rua, bairro, cidade, estado ...">
+          <input formControlName="localizacao" type="text" class="form-control text-primary" id="input-local" aria-describedby="Local do ecoponto" placeholder="Rua, bairro, cidade, estado ...">
         </div>
 
         <div class="mb-3">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="d-grid gap-2 col-12 mx-auto">
-            <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+            <button type="submit" class="btn btn-primary btn-lg" (click)="filtrar()">Buscar</button>
         </div>
     </form>
 
