@@ -8,6 +8,7 @@ import { Residuo } from '../models/residuo';
 import { Funcionamento } from '../models/funcionamento';
 import { faFileArrowDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Situacao } from '../models/situacao';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acesso-empresa',
@@ -22,10 +23,15 @@ export class AcessoEmpresaComponent implements OnInit {
   empresa: Empresa | undefined;
   ecopontos: Ecoponto[] = [];
 
-  constructor(private empresaService: EmpresaService, ecopontoService: EcopontoService) {}
+  constructor(private empresaService: EmpresaService, ecopontoService: EcopontoService, private router: Router) {}
 
   ngOnInit(): void {
     let empresaId = localStorage.getItem('empresaId');
+
+    if (!empresaId) {
+      this.router.navigate(["/cadastro/empresa"]);
+      return
+    }
     
     if (parseInt(empresaId!)) {
       this.buscaEmpresa(parseInt(empresaId!));
@@ -94,6 +100,10 @@ export class AcessoEmpresaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  public novoEcoponto() {
+    this.router.navigate(["/cadastro/ecoponto"]);
   }
 
 }

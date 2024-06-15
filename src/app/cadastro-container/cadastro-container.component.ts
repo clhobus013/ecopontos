@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpresaService } from '../services/empresa.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DiasFuncionamento } from '../models/diasFuncionamento';
 
 export interface Indicador {
@@ -31,9 +31,9 @@ export class CadastroContainerComponent implements OnInit {
 
   passo = 0;
   indicadores: Indicador[] = [
-    { id: 0, label: 'Empresa', route: '/cadastro/empresa' },
-    { id: 1, label: 'Ecoponto', route: '/cadastro/ecoponto' },
-    { id: 2, label: 'Horário de funcionamento', route: '/cadastro/horario' },
+    { id: 0, label: 'Empresa', route: '/' + this.obterAcao() + '/empresa' },
+    { id: 1, label: 'Ecoponto', route: '/' + this.obterAcao() + '/ecoponto' },
+    { id: 2, label: 'Horário de funcionamento', route: '/' + this.obterAcao() + '/horario' },
   ];
 
   sub = this.router.events.subscribe(
@@ -45,7 +45,7 @@ export class CadastroContainerComponent implements OnInit {
 
   enviado = false;
 
-  constructor(private formBuilder: FormBuilder, private empresaService: EmpresaService, private router: Router) {}
+  constructor(private formBuilder: FormBuilder, private empresaService: EmpresaService, private router: Router, private route: ActivatedRoute) {}
   
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -162,6 +162,14 @@ export class CadastroContainerComponent implements OnInit {
       'invalid-feedback': !this.isFieldValid(field),
       'valid-feedback': this.isFieldValid(field)
     };
+  }
+
+  public obterAcao(): string {
+    return this.route.snapshot.data['acao'];
+  }
+
+  public ehEdicao(): boolean {
+    return this.route.snapshot.data['acao'] == 'edicao';
   }
 
 }

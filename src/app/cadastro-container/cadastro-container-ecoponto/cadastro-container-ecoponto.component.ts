@@ -27,11 +27,11 @@ export class CadastroContainerEcopontoComponent implements OnInit {
     this.form = this.formContainer.getEcopontoForm();
     this.formLocalizacao = this.formContainer.getLocalizacaoForm();
 
-    this.ecopontoId = localStorage.getItem('ecopontoId');
     this.empresaId = localStorage.getItem('empresaId');
 
-    console.log("Id Empresa >>>", parseInt(this.empresaId!));
-    console.log("Id Ecoponto >>>", parseInt(this.ecopontoId!));
+    if (this.formContainer.ehEdicao()) {
+      this.ecopontoId = localStorage.getItem('ecopontoId');
+    }
 
     this.buscarResiduos();
   }

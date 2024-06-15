@@ -3,6 +3,7 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Ecoponto } from '../models/ecoponto';
 import { EcopontoService } from '../services/ecoponto.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-ecoponto',
@@ -21,7 +22,7 @@ export class CardEcopontoComponent implements OnInit {
   faTrash = faTrash;
   faPen = faPen;
 
-  constructor(private ecopontoService: EcopontoService, private toastr: ToastrService) { }
+  constructor(private ecopontoService: EcopontoService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {}
 
@@ -47,7 +48,11 @@ export class CardEcopontoComponent implements OnInit {
   }
 
   public editar() {
-    console.log("IMPLEMENTAR");
+    if(this.ecoponto != undefined) {
+      localStorage.setItem('ecopontoId', this.ecoponto.id.toString());
+    }
+    
+    this.router.navigate(["/edicao/ecoponto"]);
   }
 
   public alterarSituacao() {

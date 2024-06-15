@@ -77,39 +77,13 @@ export class CadastroContainerHorarioComponent implements OnInit {
       }
     }
 
-    await this.salvaFuncionamento(funcionamentos);
     await this.editaFuncionamento(funcionamentos);
 
     this.router.navigate(["/cadastro/conclusao"]);
     
   }
 
-  public async salvaFuncionamento(funcionamentos: Funcionamento[]) {
-
-    funcionamentos = funcionamentos.filter((func: Funcionamento) => this.diasEdicao.indexOf(func.diaSemana!) < 0);
-
-    if (funcionamentos.length <= 0) {
-      return;
-    }
-
-    await this.funcionamentoService.postFuncionamento(parseInt(this.ecopontoId!), funcionamentos)
-      .subscribe(
-        (data: any) => {
-          console.log(">> >> RESULTADO SALVAR ", data);
-        },
-        (error: any) => {
-          console.log(error);
-          this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
-            timeOut: 2000,
-            positionClass: 'toast-bottom-right'
-          });
-        }
-      );
-  }
-
   public async editaFuncionamento(funcionamentos: Funcionamento[]) {
-
-    funcionamentos = funcionamentos.filter((func: Funcionamento) => this.diasEdicao.indexOf(func.diaSemana!) >=0);
     
     if (funcionamentos.length <= 0) {
       return;
@@ -122,7 +96,7 @@ export class CadastroContainerHorarioComponent implements OnInit {
         },
         (error: any) => {
           console.log(error);
-          this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
+          this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar o horário de funcionamento', {
             timeOut: 2000,
             positionClass: 'toast-bottom-right'
           });

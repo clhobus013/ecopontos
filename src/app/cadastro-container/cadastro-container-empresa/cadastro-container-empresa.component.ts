@@ -22,8 +22,6 @@ export class CadastroContainerEmpresaComponent implements OnInit {
 
     this.empresaId = localStorage.getItem('empresaId');
 
-    console.log("Id EMPRESA >>>", parseInt(this.empresaId!));
-
     if (this.empresaId) {
       this.buscaEmpresa()
     }
