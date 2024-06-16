@@ -10,32 +10,23 @@ import { EcopontoService } from '../services/ecoponto.service';
 
 export class MapaComponent implements OnInit {
 
+  center: google.maps.LatLngLiteral = { lat: -29.1681, lng: -51.1792 }; // Coordenadas de Caxias do Sul
+  display: google.maps.LatLngLiteral | null = null;
+  markers: google.maps.LatLngLiteral[] = [];
+
+  zoom = 13;
+  icon = 'assets/icone_ecoponto2.png';
+
   mapOptions: google.maps.MapOptions = {
-    center: { lat: 38.9987208, lng: -77.2538699 },
-    zoom: 14,
+    center: this.center,
+    zoom: this.zoom,
     disableDefaultUI: true,
     zoomControl: false,
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControl: false,
     backgroundColor: 'none',
-  };
-
-  display: google.maps.LatLngLiteral | null = null;
-  center: google.maps.LatLngLiteral = { lat: -29.1681, lng: -51.1792 }; // Coordenadas de Caxias do Sul
-  zoom = 13;
-
-  icon = 'assets/icone_ecoponto2.png';
-
-  markers: google.maps.LatLngLiteral[] = [
-    { lat: -29.167, lng: -51.179 },
-    { lat: -29.170, lng: -51.181 },
-    { lat: -29.17110, lng: -51.14016 },
-    { lat: -29.17140, lng: -51.16764 },
-    { lat: -29.16642, lng: -51.16557 },
-    { lat: -29.16657, lng: -51.18574 },
-    { lat: -29.13374, lng: -51.19270 }
-  ];
+  };  
 
   constructor(private ecopontoService: EcopontoService) { }
 
@@ -49,8 +40,11 @@ export class MapaComponent implements OnInit {
     }
   }
 
-  filtrarEcopontos() {
-    this.ecopontoService.filtrarEcopontos("")
+  filtrarEcopontos(event?: any) {
+
+    this.markers = [];
+
+    this.ecopontoService.filtrarEcopontos(event ? event.localizacao : "", event ? event.residuos : [0])
     .subscribe(
       (data: any) => {
         data.values.map((value: any)=> {

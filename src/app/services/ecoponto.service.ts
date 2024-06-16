@@ -63,7 +63,7 @@ export class EcopontoService {
     return this.http.get<Residuo>(this._url + "/residuo", this.requestOptions);
   }
 
-  filtrarEcopontos(localizacao?: string, residuoId?: number): any {
+  filtrarEcopontos(localizacao?: string, residuosId?: number[]): any {
 
     let params = "";
 
@@ -71,9 +71,9 @@ export class EcopontoService {
       params += "?localizacao=" + localizacao;
     }
 
-    if (residuoId) {
+    if (residuosId) {
       params += !params ? "?" : "&";
-      params += "residuo_id=" + residuoId;
+      params += "residuo_id=" + residuosId[0];
     }
 
     return this.http.get<Ecoponto>(this._url + "/ecoponto" + params, this.requestOptions);

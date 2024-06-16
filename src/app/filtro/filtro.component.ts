@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { EcopontoService } from '../services/ecoponto.service';
 import { Residuo } from '../models/residuo';
 import { IconName } from '@fortawesome/fontawesome-common-types';
 import { Categoria } from '../models/categoria';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filtro',
@@ -12,27 +12,31 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FiltroComponent implements OnInit {
 
+  @Output() filtros = new EventEmitter();
+
   form!: FormGroup;
 
-  localizacao: string = "";
   residuos: Residuo[] = [];
 
   constructor(private ecopontoService: EcopontoService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
+    this.buscarResiduos();
+
     this.form = this.formBuilder.group({
       localizacao: [""],
-      residuos: this.formBuilder.array(
-        this.residuos.map(() => {
-          return this.formBuilder.group({
-            ativo: [true],
-          })
-        })
-      )
+      residuos: this.formBuilder.array(this.residuos.map(residuo => residuo.id))
     });
 
-    this.buscarResiduos();
+  }
+
+  public geraFormulario() {
+  
+    this.residuos.forEach((option: any) => {
+      (this.form.get('residuos') as FormArray).controls.push( new FormControl(option.id))
+    });
+
   }
 
   public async buscarResiduos() {
@@ -50,6 +54,8 @@ export class FiltroComponent implements OnInit {
                 categorias: residuo.categoria.map((categ: any) => new Categoria({descricao: categ.descricao, icone: categ.icone}))
               })
           );
+
+          this.geraFormulario();
         },
         (error: any) => {
           console.log(error);
@@ -58,7 +64,12 @@ export class FiltroComponent implements OnInit {
   }
 
   public filtrar() {
-    console.log(" FILTROU >> localizacao", this.localizacao, this.residuos)
+
+    let arrayResiduos = this.form.get("residuos") as FormArray<FormControl>
+
+    let residuosFiltrados = arrayResiduos.controls.filter((control: any) => control.pristine).map((residuo)=> residuo.value)
+    
+    this.filtros.emit({"localizacao": this.form.get("localizacao")?.value, "residuos": residuosFiltrados})
   }
 
 }

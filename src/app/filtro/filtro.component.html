@@ -9,8 +9,8 @@
 
         <div class="mb-3">
             <span class="fw-bold text-primary">Por resíduo</span>
-            <div *ngFor="let residuo of residuos; index as i" class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <div *ngFor="let residuo of residuos; let i = index" class="form-check" formArrayName="residuos">
+                <input [formControlName]="i" class="form-check-input" type="checkbox" [value]="residuo" id="flexCheckChecked">
                 <label class="form-check-label text-primary" for="flexCheckChecked">
                     <fa-icon [icon]="['fas', residuo!.icone ? residuo!.icone : 'trash']"></fa-icon>
                     {{residuo.descricao}}
