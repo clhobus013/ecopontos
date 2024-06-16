@@ -75,6 +75,16 @@
         </div>
 
         <div class="col-12 d-flex flex-wrap justify-content-between">
+            <div class="col-12 col-md-6 mb-3 ps-md-1">
+                <input formControlName="latitude" class="form-control" type="text"
+                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.latitude') ? 'is-invalid' : ''"
+                    placeholder="Latitude" aria-label="default input example" [allowNegativeNumbers]="true"
+                    mask="00.0000000" [dropSpecialCharacters]="false">
+                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.latitude')"
+                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.latitude')">Por favor, informe a
+                    latitude</div>
+            </div>
+
             <div class="col-12 col-md-6 mb-3 pe-md-1">
                 <input formControlName="longitude" class="form-control"
                     [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.longitude') ? 'is-invalid' : ''"
@@ -84,16 +94,6 @@
                     [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.longitude')">Por favor, informe a
                     longitude</div>
 
-            </div>
-
-            <div class="col-12 col-md-6 mb-3 ps-md-1">
-                <input formControlName="latitude" class="form-control" type="text"
-                    [ngClass]="!formContainer.isFieldValid('ecoponto.localizacao.latitude') ? 'is-invalid' : ''"
-                    placeholder="Latitude" aria-label="default input example" [allowNegativeNumbers]="true"
-                    mask="00.0000000" [dropSpecialCharacters]="false">
-                <div *ngIf="!formContainer.isFieldValid('ecoponto.localizacao.latitude')"
-                    [ngClass]="formContainer.displayFieldCss('ecoponto.localizacao.latitude')">Por favor, informe a
-                    latitude</div>
             </div>
         </div>
     </div>
