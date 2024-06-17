@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { EcopontoService } from '../services/ecoponto.service';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Residuo } from '../models/residuo';
 
 @Component({
   selector: 'app-mapa',
@@ -9,10 +11,19 @@ import { EcopontoService } from '../services/ecoponto.service';
 })
 
 export class MapaComponent implements OnInit {
+  @ViewChild(MapInfoWindow) infoWindow?: MapInfoWindow;
 
   center: google.maps.LatLngLiteral = { lat: -29.1681, lng: -51.1792 }; // Coordenadas de Caxias do Sul
   display: google.maps.LatLngLiteral | null = null;
   markers: google.maps.LatLngLiteral[] = [];
+
+  residuos: Residuo[] = [new Residuo({
+    ativo: true,
+    categorias: [],
+    descricao: "Lata de alumínio",
+    icone: "coffee",
+    id: 1,
+  })]; 
 
   zoom = 13;
   icon = 'assets/icone_ecoponto2.png';
@@ -38,6 +49,10 @@ export class MapaComponent implements OnInit {
     if (event.latLng) {
       this.center = event.latLng.toJSON();
     }
+  }
+
+  openInfoWindow(marker: MapMarker) {
+    this.infoWindow?.open(marker);
   }
 
   filtrarEcopontos(event?: any) {

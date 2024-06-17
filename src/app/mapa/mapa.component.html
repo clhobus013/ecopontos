@@ -12,8 +12,15 @@
       *ngFor="let marker of markers; let i = index"
       [position]="marker"
       [icon]="icon"
-      (mapClick)="display = marker">
+      #mapMarker="mapMarker"
+      (mapClick)="openInfoWindow(mapMarker)">
     </map-marker>
+
+    <map-info-window>
+      <h3 class="fs-4">Nome do ecoponto</h3>
+      <p>Rua, numero, bairro, cidade</p>
+      <app-residuo *ngFor="let residuo of residuos" class="px-1" [residuo]="residuo"></app-residuo>
+    </map-info-window>
   
   </google-map>
   <app-filtro (filtros)="filtrarEcopontos($event)"></app-filtro>
