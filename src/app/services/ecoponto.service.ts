@@ -73,7 +73,7 @@ export class EcopontoService {
 
     if (residuosId) {
       params += !params ? "?" : "&";
-      params += "residuo_id=" + residuosId[0];
+      params += "residuo_id=" + residuosId.join();
     }
 
     return this.http.get<Ecoponto>(this._url + "/ecoponto" + params, this.requestOptions);
