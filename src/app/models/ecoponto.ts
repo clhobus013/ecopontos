@@ -14,8 +14,9 @@ export class Ecoponto {
     ativo: boolean = true;
     empresa: Empresa|undefined;
     diasFuncionamento: DiasFuncionamento[] = [];
-    residuos: Residuo[] = [];
-    localizacao: Localizacao|undefined;
+    funcionamento: string = "";
+    residuo: Residuo[] = [];
+    localizacao: Localizacao[]|undefined;
 //   situacao_enum: NewType | null | undefined;
 
     constructor(init?: Partial<Ecoponto>) {
@@ -29,7 +30,7 @@ export class Ecoponto {
             aberto_publico: this.abertoPublico,
             empresa_id: this.empresa?.id,
             localizacao: [this.localizacao],
-            residuo: this.residuos.filter((residuo) => residuo.ativo).map((residuo) => {return {id: residuo.id}})
+            residuo: this.residuo.filter((residuo) => residuo.ativo).map((residuo) => {return {id: residuo.id}})
         };
     }
 
@@ -44,6 +45,7 @@ export class Ecoponto {
                     situacaoEnum: value.situacao_enum
                 }),
                 ativo: value.ativo,
+                localizacao: value.localizacao.map((localizacao: any)=> new Localizacao(localizacao))
             }
         )
     }
