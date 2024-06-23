@@ -9,9 +9,11 @@
                 <p class="fs-3">{{situacao.situacao}}</p>
             </div>
     
-            <div *ngIf="situacao.aberto" class="d-flex flex-wrap">
-                <div *ngFor="let ecoponto of situacao.ecopontos ; let i = index" class="col-12 col-sm-5 col-xl-5 comp-card d-flex flex-column me-auto mb-2">
-                    <app-card-ecoponto [ecoponto]="ecoponto" [index]="i" [tipo]="2" (clickSituacao)="alteraSituacao($event)"></app-card-ecoponto>
+            <div *ngIf="situacao.aberto" class="row g-3">
+                <div *ngFor="let ecoponto of situacao.ecopontos ; let i = index" class="col-12 col-sm-6 col-xl-6">
+                    <div class="comp-card">
+                        <app-card-ecoponto [ecoponto]="ecoponto" [index]="i" [tipo]="2" (clickSituacao)="alteraSituacao($event)"></app-card-ecoponto>
+                    </div>
                 </div>
             </div>
         </div>
