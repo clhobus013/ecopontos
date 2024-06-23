@@ -13,13 +13,13 @@
       [position]="marker"
       [icon]="icon"
       #mapMarker="mapMarker"
-      (mapClick)="openInfoWindow(mapMarker)">
+      (mapClick)="openInfoWindow(mapMarker, i)">
     </map-marker>
 
     <map-info-window>
-      <h3 class="fs-4">Nome do ecoponto</h3>
-      <p>Rua, numero, bairro, cidade</p>
-      <app-residuo *ngFor="let residuo of residuos" class="px-1" [residuo]="residuo"></app-residuo>
+      <h3 class="fs-4">{{ecopontoAberto?.nome}}</h3>
+      <p *ngFor="let localizacao of ecopontoAberto?.localizacao">{{localizacao.rua}}, {{localizacao.numero}}, {{localizacao.bairro}}, {{localizacao.cidade}}</p>
+      <app-residuo *ngFor="let residuo of ecopontoAberto?.residuo" class="px-1" [residuo]="residuo"></app-residuo>
     </map-info-window>
   
   </google-map>

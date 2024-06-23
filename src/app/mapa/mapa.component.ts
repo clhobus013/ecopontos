@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { EcopontoService } from '../services/ecoponto.service';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Residuo } from '../models/residuo';
+import { Ecoponto } from '../models/ecoponto';
 
 @Component({
   selector: 'app-mapa',
@@ -16,6 +17,8 @@ export class MapaComponent implements OnInit {
   center: google.maps.LatLngLiteral = { lat: -29.1681, lng: -51.1792 }; // Coordenadas de Caxias do Sul
   display: google.maps.LatLngLiteral | null = null;
   markers: google.maps.LatLngLiteral[] = [];
+  ecopontos: Ecoponto[] = [];
+  ecopontoAberto?: Ecoponto;
 
   residuos: Residuo[] = [new Residuo({
     ativo: true,
@@ -51,8 +54,9 @@ export class MapaComponent implements OnInit {
     }
   }
 
-  openInfoWindow(marker: MapMarker) {
+  openInfoWindow(marker: MapMarker, index: number) {
     this.infoWindow?.open(marker);
+    this.ecopontoAberto = this.ecopontos[index];
   }
 
   filtrarEcopontos(event?: any) {
@@ -62,6 +66,7 @@ export class MapaComponent implements OnInit {
     this.ecopontoService.filtrarEcopontos(event ? event.localizacao : "", event ? event.residuos : [0])
     .subscribe(
       (data: any) => {
+        this.ecopontos = data.values;
         data.values.map((value: any)=> {
           this.markers.push({
             lat: Number(value.localizacao[0].latitude),
