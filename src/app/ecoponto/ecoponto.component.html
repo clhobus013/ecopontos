@@ -1,0 +1,25 @@
+  <!-- Modal -->
+  <div class="modal show bg-cinza" [ngClass]="aberto ? 'd-block' : null" id="situacaoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="">
+          <h3 class="modal-title text-primary text-center fw-bold p-3">Ecoponto {{ecoponto?.nome}}</h3>
+        </div>
+        <div class="col-6 mx-auto">
+          <p class="fw-medium mb-1">Aberto ao público: {{ecoponto?.abertoPublico ? "Sim": "Não"}}</p>
+          <p class="fw-medium mb-1">Ativo: {{ecoponto?.ativo ? "Sim": "Não"}}</p>
+          <p class="fw-medium mb-0">Dias de funcionamento:</p>
+          <p class="fw-medium mx-3">{{ecoponto?.funcionamento}}</p>
+          <p class="fw-medium m-0">Localizacao: </p>
+          <div *ngFor="let localizacao of ecoponto?.localizacao" class="mx-3">
+              <p class=" fw-medium m-0">Rua {{localizacao.rua}}, nr {{localizacao.numero}}.</p>
+              <p class=" fw-medium">Bairro {{localizacao.bairro}}, {{localizacao.cidade}} - {{localizacao.estado}}</p>
+          </div>
+          
+        </div>
+        <div class="col-12 d-flex p-3">
+          <button type="button" class="col-4 btn btn-primary m-auto" (click)="fechar()">Fechar</button>
+        </div>
+      </div>
+    </div>
+</div>

@@ -16,7 +16,6 @@ export class AcessoVoluntarioComponent implements OnInit {
 
   ecopontoEditar?: Ecoponto;
   situacoes: Situacao[] = [];
-  aberto: boolean = false;
 
   chevronUp = faChevronUp;
   chevronDown = faChevronDown;

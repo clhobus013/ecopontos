@@ -23,6 +23,7 @@ import { AcessoVoluntarioComponent } from './acesso-voluntario/acesso-voluntario
 import { SituacoesModalComponent } from './situacoes-modal/situacoes-modal.component';
 import { ResiduoModule } from './residuo/residuo.module';
 import { LoadingInterceptor } from './loading/loading.interceptor';
+import { EcopontoComponent } from './ecoponto/ecoponto.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LoadingInterceptor } from './loading/loading.interceptor';
     CardEcopontoComponent,
     AcessoVoluntarioComponent,
     SituacoesModalComponent,
+    EcopontoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-<div *ngIf="ecoponto" class="col-12 m-auto">
+<div *ngIf="ecoponto" class="col-12 m-auto" (click)="verDetalhesEcoponto()">
 
     <p class="text-center fw-bold">{{ecoponto.nome}}</p>
     <p class="text-center">{{ecoponto.situacao?.situacao}}</p>
@@ -7,4 +7,7 @@
         <button class="btn btn-primary" (click)="remover()"><fa-icon [icon]="faTrash"></fa-icon></button>
         <button class="btn btn-primary" (click)="tipo == 1 ? editar() : alterarSituacao()"><fa-icon [icon]="faPen"></fa-icon></button>
     </div>
+
 </div>
+
+<app-ecoponto #ecopontoModal [ecoponto]="ecoponto"></app-ecoponto>

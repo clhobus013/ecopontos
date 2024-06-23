@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Ecoponto } from '../models/ecoponto';
 import { EcopontoService } from '../services/ecoponto.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { EcopontoComponent } from '../ecoponto/ecoponto.component';
 
 @Component({
   selector: 'app-card-ecoponto',
@@ -18,6 +19,8 @@ export class CardEcopontoComponent implements OnInit {
   // Envia infos para o elemento pai
   @Output() respostaEcoponto  = new EventEmitter();
   @Output() clickSituacao  = new EventEmitter();
+
+  @ViewChild('ecopontoModal') modal?: EcopontoComponent;
 
   faTrash = faTrash;
   faPen = faPen;
@@ -57,6 +60,10 @@ export class CardEcopontoComponent implements OnInit {
 
   public alterarSituacao() {
     this.clickSituacao.emit({"id": this.ecoponto!.id, "index": this.index, "ecoponto": this.ecoponto});
+  }
+
+  public verDetalhesEcoponto() {
+    this.modal?.abrir();
   }
 
 }
