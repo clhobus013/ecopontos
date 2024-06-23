@@ -80,7 +80,7 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   }
 
   public async salvarEcoponto() {
-    await this.ecopontoService.postEcoponto(new Ecoponto({empresa: {id: this.empresaId}, residuos: this.residuos, ...this.form.value}))
+    await this.ecopontoService.postEcoponto(new Ecoponto({empresa: {id: this.empresaId}, residuo: this.residuos, ...this.form.value}))
       .subscribe(
         (data: any) => {
           this.ecopontoId = data.value.id;
@@ -103,7 +103,7 @@ export class CadastroContainerEcopontoComponent implements OnInit {
   }
 
   public async editarEcoponto() {
-    await this.ecopontoService.putEcoponto(new Ecoponto({id: this.ecopontoId, empresa: {id: this.empresaId}, residuos: this.residuos, ...this.form.value}))
+    await this.ecopontoService.putEcoponto(new Ecoponto({id: this.ecopontoId, empresa: {id: this.empresaId}, residuo: this.residuos, ...this.form.value}))
       .subscribe(
         (data: any) => {          
           this.toastr.success('Realize o cadastro do horário de funcionamento!', 'Ecoponto salvo com sucesso', {

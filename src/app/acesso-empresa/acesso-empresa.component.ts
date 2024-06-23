@@ -83,7 +83,7 @@ export class AcessoEmpresaComponent implements OnInit {
                   longitude: localizacao.longitude,
                 })),
                 abertoPublico: ecoponto.aberto_publico,
-                residuos: ecoponto.residuo.map((residuo: any) => new Residuo({
+                residuo: ecoponto.residuo.map((residuo: any) => new Residuo({
                   id: residuo.id,
                   descricao: residuo.descricao,
                   icone: residuo.icone,
