@@ -59,7 +59,6 @@ export class FiltroComponent implements OnInit {
           this.geraFormulario();
         },
         (error: any) => {
-          console.log(error);
         }
       );
   }

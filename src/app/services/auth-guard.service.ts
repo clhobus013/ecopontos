@@ -19,8 +19,6 @@ export class AuthGuard implements CanActivate, CanActivateChild{
 
     protected checarRota(activated: ActivatedRouteSnapshot): Observable<boolean> {
 
-        console.log(" >> CHECAR ROTA << ", activated);
-
         if (activated.routeConfig?.path == "ecoponto") {
 
             const empresaId = localStorage.getItem('empresaId');

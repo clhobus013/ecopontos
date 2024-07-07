@@ -69,11 +69,8 @@ export class CadastroContainerEcopontoComponent implements OnInit {
             this.residuos[index].ativo = residuo.ativo;
           })
 
-          console.log("Id do form", this.form.get("id"));
-
         },
         (error: any) => {
-          console.log(error);
         }
       );
 
@@ -93,7 +90,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
           this.proximo();
         },
         (error: any) => {
-          console.log(error);
           this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
             timeOut: 2000,
             positionClass: 'toast-bottom-right'
@@ -113,7 +109,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
           this.proximo();
         },
         (error: any) => {
-          console.log(error);
           this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
             timeOut: 2000,
             positionClass: 'toast-bottom-right'
@@ -126,7 +121,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
     this.formContainer.enviado = true;
 
     if (!this.form.valid) {
-      console.log("Tentou enviar formulario: ", this.form);
       this.toastr.error('Preencha corretamente', 'Formulário inválido', {
         positionClass: 'toast-bottom-right'
       });
@@ -162,7 +156,6 @@ export class CadastroContainerEcopontoComponent implements OnInit {
           }
         },
         (error: any) => {
-          console.log(error);
         }
       );
   }

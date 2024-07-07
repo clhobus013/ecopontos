@@ -33,8 +33,6 @@ export class CadastroContainerEmpresaComponent implements OnInit {
     this.empresaService.getEmpresaPorId(parseInt(this.empresaId!))
       .subscribe(
         (data: any) => {
-          console.log(data);
-
           this.form.setValue({
             id: data.value.id,
             nomeFantasia: data.value.nome_fantasia,
@@ -48,12 +46,8 @@ export class CadastroContainerEmpresaComponent implements OnInit {
             senha: null,
             descricaoOutrosProjetos: data.value.descricao_outros_projetos,
           })
-
-          console.log("Id do form", this.form.get("id"));
-
         },
         (error: any) => {
-          console.log(error);
         }
       );
 
@@ -63,8 +57,6 @@ export class CadastroContainerEmpresaComponent implements OnInit {
     this.empresaService.postEmpresa(new Empresa(this.form.value))
       .subscribe(
         (data: any) => {
-          console.log(data);
-
           localStorage.setItem('empresaId', data.value.id);
           
           this.toastr.success('Realize o cadastro dos ecopontos!', 'Empresa salva com sucesso', {
@@ -74,7 +66,6 @@ export class CadastroContainerEmpresaComponent implements OnInit {
           this.proximo();
         },
         (error: any) => {
-          console.log(error);
           this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
             timeOut: 2000,
             positionClass: 'toast-bottom-right'
@@ -84,11 +75,9 @@ export class CadastroContainerEmpresaComponent implements OnInit {
   }
 
   public editaEmpresa() {
-    console.log("form", this.form.value);
     this.empresaService.putEmpresa(new Empresa({id: this.empresaId, ...this.form.value}))
       .subscribe(
         (data: any) => {
-          console.log(data);
           
           this.toastr.success('Realize o cadastro dos ecopontos!', 'Empresa salva com sucesso', {
             timeOut: 1500,
@@ -97,7 +86,6 @@ export class CadastroContainerEmpresaComponent implements OnInit {
           this.proximo();
         },
         (error: any) => {
-          console.log(error);
           this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar a empresa', {
             timeOut: 2000,
             positionClass: 'toast-bottom-right'
@@ -109,8 +97,6 @@ export class CadastroContainerEmpresaComponent implements OnInit {
   public salvar(){
 
     this.formContainer.enviado = true;
-
-    console.log("Clicou em salvar empresa!!");
 
     if (!this.form.valid) {
       this.toastr.error('Preencha corretamente', 'Formulário inválido', {

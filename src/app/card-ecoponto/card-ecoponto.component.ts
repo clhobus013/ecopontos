@@ -33,7 +33,6 @@ export class CardEcopontoComponent implements OnInit {
   public remover() {
     this.ecopontoService.deleteEcoponto(this.ecoponto!.id).subscribe(
       (data: any) => {
-        console.log(data);
         this.toastr.success('', 'Ecoponto removido com sucesso', {
           timeOut: 1500,
           positionClass: 'toast-bottom-right'
@@ -42,7 +41,6 @@ export class CardEcopontoComponent implements OnInit {
         this.ecoponto = undefined;
       },
       (error: any) => {
-        console.log(error);
         this.toastr.success(error.error.message, 'Não foi possível remover o ecoponto', {
           timeOut: 1500,
           positionClass: 'toast-bottom-right'

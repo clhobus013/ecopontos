@@ -28,7 +28,6 @@ export class EmpresaService {
   }
 
   getEmpresaPorId(id: number): any {
-    console.log("Empresa id ", id);
     return this.http.get<Empresa>(this._url + "/empresa/" + id, this.requestOptions);
   }
 
@@ -39,7 +38,6 @@ export class EmpresaService {
 
   putEmpresa(empresa: Empresa): any {
     const empresaFormatada = empresa.getEmpresaFormatadaApi();
-    console.log("Put empresa", empresa, empresaFormatada);
     return this.http.put<ErroDefault>(this._url + "/empresa/" + empresa.id, empresaFormatada);
   }
 

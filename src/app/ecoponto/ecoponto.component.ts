@@ -18,7 +18,6 @@ export class EcopontoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Ecoponto: ", this.ecoponto)
   }
 
   public abrir() {

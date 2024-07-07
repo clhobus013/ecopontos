@@ -9,7 +9,7 @@ import { Ecoponto } from '../models/ecoponto';
   templateUrl: './situacoes-modal.component.html',
   styleUrls: ['./situacoes-modal.component.scss']
 })
-export class SituacoesModalComponent implements OnInit, OnChanges {
+export class SituacoesModalComponent implements OnInit {
   @Input() ecoponto: Ecoponto|undefined = undefined;
 
   @Output() retornaSituacao  = new EventEmitter();
@@ -25,18 +25,12 @@ export class SituacoesModalComponent implements OnInit, OnChanges {
     this.buscarSituacoes();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // changes.prop contains the old and the new value...
-    console.log(changes);
-  }
-
   public buscarSituacoes() {
     this.ecopontoService.getSituacoes().subscribe(
       (data: any) => {
         this.situacoes = data.values.map((value: any)=> new Situacao({"situacao": value.situacao, "situacaoEnum": value.situacao_enum}))
       },
       (error: any) => {
-        console.log(error);
       }
     );
   }
@@ -56,7 +50,6 @@ export class SituacoesModalComponent implements OnInit, OnChanges {
         this.retornaSituacao.emit({"id": this.ecoponto!.id, "situacao": this.ecoponto!.situacao!.situacaoEnum});
       },
       (error: any) => {
-        console.log(error);
       }
     );
 

@@ -34,7 +34,6 @@ export class EcopontoService {
 
   postEcoponto(ecoponto: Ecoponto): any {
     const ecopontoFormatado = ecoponto.getEcopontoFormatadoApi();
-    console.log("Post ecoponto ", ecoponto, ecopontoFormatado);
     return this.http.post<ErroDefault>(this._url + "/ecoponto", ecopontoFormatado);
   }
 

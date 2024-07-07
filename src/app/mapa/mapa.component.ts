@@ -75,7 +75,6 @@ export class MapaComponent implements OnInit {
         })
       },
       (error: any) => {
-        console.log(error);
       }
     )
   }

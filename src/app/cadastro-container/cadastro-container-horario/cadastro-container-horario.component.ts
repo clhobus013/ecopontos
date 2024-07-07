@@ -40,8 +40,6 @@ export class CadastroContainerHorarioComponent implements OnInit {
     this.ecopontoService.getEcopontoPorId(parseInt(this.ecopontoId!))
       .subscribe(
         (data: any) => {
-          console.log(data);
-
           data.values.dia_funcionamento.map((func: any)=> {
             
             let index = this.diasSemana.map((dia) => dia.substring(0, 3).toLowerCase()).indexOf(func.dia_semana);
@@ -56,7 +54,6 @@ export class CadastroContainerHorarioComponent implements OnInit {
           })
         },
         (error: any) => {
-          console.log(error);
         }
       )
   }
@@ -92,10 +89,8 @@ export class CadastroContainerHorarioComponent implements OnInit {
     await this.funcionamentoService.putFuncionamento(parseInt(this.ecopontoId!), funcionamentos)
       .subscribe(
         (data: any) => {
-          console.log(">> >> RESULTADO EDITAR ", data);
         },
         (error: any) => {
-          console.log(error);
           this.toastr.error('Erro: ' + error.error.message, 'Não foi possível salvar o horário de funcionamento', {
             timeOut: 2000,
             positionClass: 'toast-bottom-right'

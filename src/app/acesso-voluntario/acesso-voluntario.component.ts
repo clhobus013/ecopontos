@@ -45,7 +45,6 @@ export class AcessoVoluntarioComponent implements OnInit {
         });
       },
       (error: any) => {
-        console.log(error);
       }
     );
   }

@@ -48,8 +48,6 @@ export class AcessoEmpresaComponent implements OnInit {
   private buscaEmpresa(id: number) {
     this.empresaService.getEmpresaPorId(id).subscribe(
       (data: any) => {
-        console.log(data);
-
         this.empresa = new Empresa(
           {
             id: data.value.id,
@@ -97,7 +95,6 @@ export class AcessoEmpresaComponent implements OnInit {
         )
       },
       (error: any) => {
-        console.log(error);
       }
     );
   }
