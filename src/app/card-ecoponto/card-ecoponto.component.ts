@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Ecoponto } from '../models/ecoponto';
 import { EcopontoService } from '../services/ecoponto.service';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +24,7 @@ export class CardEcopontoComponent implements OnInit {
 
   faTrash = faTrash;
   faPen = faPen;
+  faEye = faEye;
 
   constructor(private ecopontoService: EcopontoService, private toastr: ToastrService, private router: Router) { }
 

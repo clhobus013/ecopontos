@@ -5,12 +5,25 @@
         <div class="">
           <h3 class="modal-title text-primary text-center fw-bold p-3">Ecoponto {{ecoponto?.nome}}</h3>
         </div>
-        <div class="col-6 mx-auto">
-          <p class="fw-medium mb-1">Aberto ao público: {{ecoponto?.abertoPublico ? "Sim": "Não"}}</p>
-          <p class="fw-medium mb-1">Ativo: {{ecoponto?.ativo ? "Sim": "Não"}}</p>
-          <p class="fw-medium mb-0">Dias de funcionamento:</p>
-          <p class="fw-medium mx-3">{{ecoponto?.funcionamento}}</p>
-          <p class="fw-medium m-0">Localizacao: </p>
+        <div class="col-8 mx-auto">
+
+          <p *ngIf="ecoponto?.empresa" class="fw-medium m-0 fw-bold">Empresa: </p>
+          <div class="mx-3 pb-2">
+              <p class=" fw-medium m-0">{{ecoponto?.empresa?.nomeFantasia}}</p>
+              <p *ngIf="ecoponto?.empresa?.cnpj" class=" fw-medium m-0">{{ecoponto!.empresa!.cnpj! | mask: "00.000.000/0000-00"}}</p>
+              <p class=" fw-medium m-0">Responsável: {{ecoponto?.empresa?.nomeContatoResponsavel}}</p>
+              <p class=" fw-medium m-0">Email: {{ecoponto?.empresa?.email}}</p>
+              <p *ngIf="ecoponto?.empresa?.telefone" class=" fw-medium m-0">Telefone {{ecoponto!.empresa!.telefone! | mask: "(00) 0000-0000||(00) 0 0000-0000"}}</p>
+          </div>
+
+          <p class="fw-medium mb-1"><strong>Aberto ao público:</strong> {{ecoponto?.abertoPublico ? "Sim": "Não"}}</p>
+          <p class="fw-medium mb-1"><strong>Ativo:</strong> {{ecoponto?.ativo ? "Sim": "Não"}}</p>
+          <p *ngIf="ecoponto?.funcionamentos" class="fw-medium mb-0 fw-bold">Dias de funcionamento:</p>
+          <div class="mx-3 pb-2">
+            <p *ngFor="let funcionamento of ecoponto?.funcionamentos" class="fw-medium m-0">{{funcionamento}}</p>
+          </div>
+
+          <p class="fw-medium m-0 fw-bold">Localizacao: </p>
           <div *ngFor="let localizacao of ecoponto?.localizacao" class="mx-3">
               <p class=" fw-medium m-0">Rua {{localizacao.rua}}, nr {{localizacao.numero}}.</p>
               <p class=" fw-medium">Bairro {{localizacao.bairro}}, {{localizacao.cidade}} - {{localizacao.estado}}</p>

@@ -24,6 +24,11 @@ import { SituacoesModalComponent } from './situacoes-modal/situacoes-modal.compo
 import { ResiduoModule } from './residuo/residuo.module';
 import { LoadingInterceptor } from './loading/loading.interceptor';
 import { EcopontoComponent } from './ecoponto/ecoponto.component';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -50,12 +55,14 @@ import { EcopontoComponent } from './ecoponto/ecoponto.component';
     ResiduoModule,
     LoadingModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: LoadingInterceptor,
     multi: true
- }],
+ }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

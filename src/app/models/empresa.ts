@@ -57,4 +57,22 @@ export class Empresa {
         }
     }
 
+    static formataApi(value: any) {
+        return new Empresa(
+            {
+                nomeFantasia: value.nome_fantasia,
+                razaoSocial: value.razao_social,
+                cnpj: value.cnpj,
+                nomeContatoResponsavel: value.nome_contato_responsavel,
+                ramoAtuacao: value.ramo_atuacao,
+                telefone: value.telefone,
+                email: value.email,
+                senha: value.senha,
+                redeSocial: value.rede_social,
+                participacaoOutrosProjetos: value.participacao_outros_projetos,
+                descricaoOutrosProjetos: value.descricao_outros_projetos,
+            }
+        )
+    }
+
 }

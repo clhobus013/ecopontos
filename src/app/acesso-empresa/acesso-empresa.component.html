@@ -8,9 +8,9 @@
         <div class="px-3 pb-3 placeholder-glow">
             <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Nome Fantasia:</strong>{{empresa?.nomeFantasia}}</p>
             <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Razãosocial:</strong> {{empresa?.razaoSocial}}</p>
-            <p class="mb-1 col-8" [ngClass]="!empresa ? 'placeholder' : ''"><strong>CNPJ:</strong> {{empresa?.cnpj}}</p>
+            <p *ngIf="empresa?.cnpj" class="mb-1 col-8" [ngClass]="!empresa ? 'placeholder' : ''"><strong>CNPJ:</strong> {{empresa?.cnpj! | mask: "00.000.000/0000-00"}}</p>
             <p class="mb-1 col-8" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Ramo de atuação:</strong>{{empresa?.ramoAtuacao}}</p>
-            <p class="mb-1 col-6" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Telefone:</strong>{{empresa?.telefone}}</p>
+            <p *ngIf="empresa?.telefone" class="mb-1 col-6" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Telefone:</strong>{{empresa?.telefone! | mask: "(00) 0000-0000||(00) 0 0000-0000"}}</p>
             <p class="mb-1 col-6" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Rede social:</strong>{{empresa?.redeSocial}}</p>
             <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Nome responsável:</strong>{{empresa?.nomeContatoResponsavel}}</p>
             <p class="mb-1 col-10" [ngClass]="!empresa ? 'placeholder' : ''"><strong>Email:</strong> {{empresa?.email}}</p>

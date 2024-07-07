@@ -15,6 +15,7 @@ export class Ecoponto {
     empresa: Empresa|undefined;
     diasFuncionamento: DiasFuncionamento[] = [];
     funcionamento: string = "";
+    funcionamentos: string[] = [];
     residuo: Residuo[] = [];
     localizacao: Localizacao[]|undefined;
 //   situacao_enum: NewType | null | undefined;
@@ -45,7 +46,9 @@ export class Ecoponto {
                     situacaoEnum: value.situacao_enum
                 }),
                 ativo: value.ativo,
-                localizacao: value.localizacao.map((localizacao: any)=> new Localizacao(localizacao))
+                localizacao: value.localizacao.map((localizacao: any)=> new Localizacao(localizacao)),
+                funcionamentos: value.funcionamentos,
+                empresa: Empresa.formataApi(value.empresa),
             }
         )
     }
