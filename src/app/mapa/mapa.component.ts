@@ -63,7 +63,7 @@ export class MapaComponent implements OnInit {
 
     this.markers = [];
 
-    this.ecopontoService.filtrarEcopontos(event ? event.localizacao : "", event ? event.residuos : [0])
+    this.ecopontoService.filtrarEcopontos(event ? event.localizacao : "", event ? event.residuos : [])
     .subscribe(
       (data: any) => {
         this.ecopontos = data.values;

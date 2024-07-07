@@ -22,19 +22,20 @@ export class FiltroComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.buscarResiduos();
-
     this.form = this.formBuilder.group({
       localizacao: [""],
-      residuos: this.formBuilder.array(this.residuos.map(residuo => residuo.id))
+      residuos: this.formBuilder.array([])
     });
 
+    this.buscarResiduos();
   }
 
-  public geraFormulario() {
+  public async geraFormulario() {
+
+    const residuosFormArray = this.form.get('residuos') as FormArray;
   
-    this.residuos.forEach((option: any) => {
-      (this.form.get('residuos') as FormArray).controls.push( new FormControl(option.id))
+    await this.residuos.forEach((option: any) => {
+      residuosFormArray.push(this.formBuilder.control(option.id))
     });
 
   }
@@ -65,9 +66,9 @@ export class FiltroComponent implements OnInit {
 
   public filtrar() {
 
-    let arrayResiduos = this.form.get("residuos") as FormArray<FormControl>
-
-    let residuosFiltrados = arrayResiduos.controls.filter((control: any) => control.pristine).map((residuo)=> residuo.value)
+    const residuosFiltrados = this.form.value.residuos
+      .map((checked: boolean, index: number) => checked ? this.residuos[index].id : null)
+      .filter((id: number | null) => id !== null);
     
     this.filtros.emit({"localizacao": this.form.get("localizacao")?.value, "residuos": residuosFiltrados})
   }
