@@ -8,7 +8,7 @@
         <div class="col-8 mx-auto">
 
           <p *ngIf="ecoponto?.empresa" class="fw-medium m-0 fw-bold">Empresa: </p>
-          <div class="mx-3 pb-2">
+          <div *ngIf="ecoponto?.empresa" class="mx-3 pb-2">
               <p class=" fw-medium m-0">{{ecoponto?.empresa?.nomeFantasia}}</p>
               <p *ngIf="ecoponto?.empresa?.cnpj" class=" fw-medium m-0">{{ecoponto!.empresa!.cnpj! | mask: "00.000.000/0000-00"}}</p>
               <p class=" fw-medium m-0">Responsável: {{ecoponto?.empresa?.nomeContatoResponsavel}}</p>
